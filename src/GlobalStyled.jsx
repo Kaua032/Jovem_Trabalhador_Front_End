@@ -12,5 +12,7 @@ body{
     min-height: 100vh;
     background-color: #F6F7F9;
 }
-
+#root{
+    height: 100vh;
+}
 `;
