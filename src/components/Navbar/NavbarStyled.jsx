@@ -10,12 +10,16 @@ export const BackgroundNav = styled.section`
   align-items: center;
   gap: 50px;
 
-  a {
+  #title {
     color: #0a7de8;
-    font-family: "Montserrat", sans-serif;
     font-weight: bold;
     font-size: 24px;
     text-decoration: none;
+  }
+  div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   padding-top: 50px;
