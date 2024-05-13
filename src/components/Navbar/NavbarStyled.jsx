@@ -9,6 +9,7 @@ export const BackgroundNav = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 50px;
+  position: fixed;
 
   #title {
     color: #0a7de8;

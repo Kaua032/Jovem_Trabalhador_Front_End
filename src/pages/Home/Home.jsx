@@ -1,5 +1,25 @@
+import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import { Button, Modal } from "react-bootstrap";
+import { MainHome } from "./HomeStyled";
 
 export default function Home() {
-  return <Navbar />;
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <MainHome>
+      <Navbar p1={1} />;
+      <Button id="loginButton" variant="primary" onClick={handleShow}>
+        Entrar
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title id="modalTitle">Entrar</Modal.Title>
+        </Modal.Header>
+      </Modal>
+    </MainHome>
+  );
 }
