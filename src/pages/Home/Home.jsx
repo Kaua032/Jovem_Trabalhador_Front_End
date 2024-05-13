@@ -12,6 +12,10 @@ export default function Home() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function changeModal(id) {
+    console.log(id)
+  }
+
   return (
     <MainHome>
       <Navbar p1={1} />;
@@ -22,11 +26,14 @@ export default function Home() {
         <Modal.Header closeButton>
           <Modal.Title id="modalTitle">Entrar</Modal.Title>
         </Modal.Header>
-        <form>
-          <InputComponent type="text" title="Email:" width="100%"/>
-          <InputComponent type="password" title="Senha:" width="100%"/>
-          <SubmitButton title="Entrar" width="100%"/>
-          <NavModalButton text="Não possui uma conta? Clique aqui" />
+        <form id="loginForm">
+          <InputComponent type="text" title="Email:" width="100%" />
+          <InputComponent type="password" title="Senha:" width="100%" />
+          <SubmitButton title="Entrar" width="100%" />
+          <NavModalButton
+            onClick={() => changeModal("loginButton")}
+            text="Não possui uma conta? Clique aqui"
+          />
         </form>
       </Modal>
     </MainHome>
