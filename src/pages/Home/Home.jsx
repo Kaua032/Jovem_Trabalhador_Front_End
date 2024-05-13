@@ -20,7 +20,10 @@ export default function Home() {
         <Modal.Header closeButton>
           <Modal.Title id="modalTitle">Entrar</Modal.Title>
         </Modal.Header>
-        <InputComponent  type="text" title="Email:"/>
+        <form>
+          <InputComponent type="text" title="Email:" />
+          <InputComponent type="password" title="Senha:" />
+        </form>
       </Modal>
     </MainHome>
   );
