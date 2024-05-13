@@ -20,12 +20,16 @@ export default function Home() {
       setDisplayLoginNavButton("none")
       document.getElementById("loginForm").style.display = "none"
 
+      document.getElementById("modalTitle").innerHTML = "Cadastrar"
+
       setDisplayRegisterNavButton("flex")
       document.getElementById("registerForm").style.display = "flex"
     }
     else if (id === "registerForm"){
       setDisplayLoginNavButton("flex")
       document.getElementById("loginForm").style.display = "flex"
+
+      document.getElementById("modalTitle").innerHTML = "Entrar"
 
       setDisplayRegisterNavButton("none")
       document.getElementById("registerForm").style.display = "none"
