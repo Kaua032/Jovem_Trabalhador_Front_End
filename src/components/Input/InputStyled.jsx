@@ -4,7 +4,7 @@ export const InputArea = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
+    width: ${(props) => props.width};
     p{
         font-size: 12px;
         font-weight: bold;

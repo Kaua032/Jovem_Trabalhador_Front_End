@@ -22,8 +22,8 @@ export default function Home() {
           <Modal.Title id="modalTitle">Entrar</Modal.Title>
         </Modal.Header>
         <form>
-          <InputComponent type="text" title="Email:" />
-          <InputComponent type="password" title="Senha:" />
+          <InputComponent type="text" title="Email:" width="100%"/>
+          <InputComponent type="password" title="Senha:" width="100%"/>
           <SubmitButton title="Entrar" width="100%"/>
         </form>
       </Modal>
