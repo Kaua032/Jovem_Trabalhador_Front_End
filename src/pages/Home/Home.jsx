@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Button, Modal } from "react-bootstrap";
 import { MainHome } from "./HomeStyled";
+import InputComponent from "../../components/Input/InputComponent";
 
 export default function Home() {
   const [show, setShow] = useState(false);
@@ -19,6 +20,7 @@ export default function Home() {
         <Modal.Header closeButton>
           <Modal.Title id="modalTitle">Entrar</Modal.Title>
         </Modal.Header>
+        <InputComponent  type="text" title="Email:"/>
       </Modal>
     </MainHome>
   );

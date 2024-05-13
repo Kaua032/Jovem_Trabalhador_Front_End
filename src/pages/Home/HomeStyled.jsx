@@ -12,4 +12,5 @@ export const MainHome = styled.main`
         margin-right: 30px;
         border-radius: 10px;
     }
+
 `
