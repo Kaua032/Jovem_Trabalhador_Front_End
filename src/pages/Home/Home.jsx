@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { Button, Modal } from "react-bootstrap";
 import { MainHome } from "./HomeStyled";
 import InputComponent from "../../components/Input/InputComponent";
+import SubmitButton from "../../components/SubmitButton/SubmitButton";
 
 export default function Home() {
   const [show, setShow] = useState(false);
@@ -23,6 +24,7 @@ export default function Home() {
         <form>
           <InputComponent type="text" title="Email:" />
           <InputComponent type="password" title="Senha:" />
+          <SubmitButton title="Entrar" width="100%"/>
         </form>
       </Modal>
     </MainHome>
