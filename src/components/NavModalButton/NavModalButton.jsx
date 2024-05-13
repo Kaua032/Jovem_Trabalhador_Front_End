@@ -1,5 +1,10 @@
 import { NavButtonArea } from "./NavModalButtonStyled";
 
 export default function NavModalButton({...props}) {
-  return <NavButtonArea>{props.text}</NavButtonArea>;
+
+  function handleClick() {
+    props.changeModal(props.idModalButton);
+  }
+
+  return <NavButtonArea display={props.display} onClick={handleClick}>{props.text}</NavButtonArea>;
 }

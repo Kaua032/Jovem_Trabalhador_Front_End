@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const NavButtonArea = styled.button`
+  display: ${(props) => props.display};
+
   text-decoration: none;
   color: #0a7de8;
   background-color: white;
