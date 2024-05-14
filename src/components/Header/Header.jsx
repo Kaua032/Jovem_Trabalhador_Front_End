@@ -1,9 +1,14 @@
 import { Button, Modal } from "react-bootstrap";
-import { HeaderDiv, LogOut } from "./HeaderStyled";
+import { ErrorSpan, HeaderDiv, LogOut } from "./HeaderStyled";
 import InputComponent from "../Input/InputComponent";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import NavModalButton from "../NavModalButton/NavModalButton";
 import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Cookies from "js-cookie";
+import { signin } from "../../services/userService";
+import { signinSchema } from "../../schemas/signinSchema";
+import { useForm } from "react-hook-form";
 
 export default function Header() {
   const [show, setShow] = useState(false);
@@ -15,8 +20,26 @@ export default function Header() {
   const [dilpayRegisterNavButton, setDisplayRegisterNavButton] =
     useState("none");
 
+  const {
+    register: registerSignin,
+    handleSubmit: handleSubmitSignin,
+    formState: { errors: errorsSignin },
+  } = useForm({
+    resolver: zodResolver(signinSchema),
+  });
+
+  async function inHandleSubmit(data) {
+    console.log(data);
+    try {
+      console.log("chegou aqui");
+      const response = await signin(data);
+      Cookies.set("token", response.data.token, { expires: 1 });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   function changeModal(id) {
-    console.log(id);
     if (id === "loginForm") {
       setDisplayLoginNavButton("none");
       document.getElementById("loginForm").style.display = "none";
@@ -40,8 +63,7 @@ export default function Header() {
     <HeaderDiv>
       <LogOut>
         <p>User</p>
-        <button id="buttonLogOut">
-        </button>
+        <button id="buttonLogOut"></button>
       </LogOut>
       <Button id="loginButton" variant="primary" onClick={handleShow}>
         Entrar
@@ -51,10 +73,25 @@ export default function Header() {
           <Modal.Title id="modalTitle">Entrar</Modal.Title>
         </Modal.Header>
         <div id="formArea">
-          <form id="loginForm">
-            <InputComponent type="text" title="Email:" width="100%" />
-            <InputComponent type="password" title="Senha:" width="100%" />
-            <SubmitButton title="Entrar" width="100%" />
+          <form id="loginForm" onSubmit={handleSubmitSignin(inHandleSubmit)}>
+            <InputComponent
+              name="email"
+              type="text"
+              title="Email:"
+              width="100%"
+              register={registerSignin}
+            />
+            <InputComponent
+              name="password"
+              type="password"
+              title="Senha:"
+              width="100%"
+              register={registerSignin}
+            />
+            {errorsSignin.password && (
+              <ErrorSpan>{errorsSignin.password.message}</ErrorSpan>
+            )}
+            <SubmitButton type="submit" title="Entrar" width="100%" />
           </form>
           <NavModalButton
             display={dilpayLoginNavButton}
