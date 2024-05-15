@@ -3,15 +3,16 @@ import { ErrorSpan, HeaderDiv, LogOut } from "./HeaderStyled";
 import InputComponent from "../Input/InputComponent";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import NavModalButton from "../NavModalButton/NavModalButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Cookies from "js-cookie";
-import { signin } from "../../services/userService";
+import { findUser, signin } from "../../services/userService";
 import { signinSchema } from "../../schemas/signinSchema";
 import { useForm } from "react-hook-form";
 
 export default function Header() {
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -29,14 +30,23 @@ export default function Header() {
   });
 
   async function inHandleSubmit(data) {
-    console.log(data);
     try {
-      console.log("chegou aqui");
       const response = await signin(data);
       Cookies.set("token", response.data.token, { expires: 1 });
+      handleClose();
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async function getUser() {
+    const response = await findUser();
+    setUser(response.data.user);
+  }
+
+  function logOut() {
+    Cookies.remove("token");
+    window.location.reload();
   }
 
   function changeModal(id) {
@@ -59,15 +69,25 @@ export default function Header() {
     }
   }
 
+  useEffect(() => {
+    if (Cookies.get("token")) {
+      getUser();
+    }
+  });
+
   return (
     <HeaderDiv>
-      <LogOut>
-        <p>User</p>
-        <button id="buttonLogOut"></button>
-      </LogOut>
-      <Button id="loginButton" variant="primary" onClick={handleShow}>
-        Entrar
-      </Button>
+      {user ? (
+        <LogOut onClick={logOut}>
+          <p>{user.name}</p>
+          <button id="buttonLogOut"></button>
+        </LogOut>
+      ) : (
+        <Button id="loginButton" variant="primary" onClick={handleShow}>
+          Entrar
+        </Button>
+      )}
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title id="modalTitle">Entrar</Modal.Title>
@@ -99,12 +119,12 @@ export default function Header() {
             changeModal={changeModal}
             text="Não possui uma conta? Clique aqui."
           />
-          <form id="registerForm">
+          {/* <form id="registerForm">
             <InputComponent type="text" title="Nome:" width="100%" />
             <InputComponent type="text" title="Email:" width="100%" />
             <InputComponent type="password" title="Senha:" width="100%" />
             <SubmitButton title="Cadastrar-se" width="100%" />
-          </form>
+          </form> */}
           <NavModalButton
             display={dilpayRegisterNavButton}
             idModalButton="registerForm"
