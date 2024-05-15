@@ -8,6 +8,7 @@ export const BackgroundNav = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: flex-start;
   gap: 50px;
   position: fixed;
 

@@ -17,6 +17,7 @@ export const InputArea = styled.div`
         border-radius: 20px;
         height: 40px;
         padding-left: 15px;
+        padding-right: 15px;
     }
     
 `

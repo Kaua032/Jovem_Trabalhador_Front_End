@@ -4,6 +4,7 @@ export const HeaderDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
+  width: 100%;
 `;
 export const LogOut = styled.div`
   margin-right: 20px;
