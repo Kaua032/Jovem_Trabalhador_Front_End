@@ -39,6 +39,8 @@ export default function Header() {
     }
   }
 
+  
+
   async function getUser() {
     const response = await findUser();
     setUser(response.data.user);

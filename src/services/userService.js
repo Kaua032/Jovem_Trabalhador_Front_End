@@ -8,6 +8,13 @@ export function signin(data) {
   return response;
 }
 
+export function signup(data) {
+  const response = axios.post(`${baseURL}/user/register`, data);
+  return response;
+}
+
+
+
 export function findUser() {
   const response = axios.get(`${baseURL}/user/findById`, {
     headers: {
