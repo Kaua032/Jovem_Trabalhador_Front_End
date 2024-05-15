@@ -6,8 +6,9 @@ import NavModalButton from "../NavModalButton/NavModalButton";
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Cookies from "js-cookie";
-import { findUser, signin } from "../../services/userService";
+import { findUser, signin, signup } from "../../services/userService";
 import { signinSchema } from "../../schemas/signinSchema";
+import { signupSchema } from "../../schemas/signupSchema";
 import { useForm } from "react-hook-form";
 
 export default function Header() {
@@ -39,7 +40,23 @@ export default function Header() {
     }
   }
 
-  
+  const {
+    register: registerSigup,
+    handleSubmit: handleSubmitSignup,
+    formState: { errors: errorsSignup },
+  } = useForm({
+    resolver: zodResolver(signupSchema),
+  });
+
+  async function upHandleSubmit(data) {
+    try {
+      const response = await signup(data);
+      Cookies.set("token", response.data.token, { expires: 1 });
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function getUser() {
     const response = await findUser();
@@ -103,6 +120,9 @@ export default function Header() {
               width="100%"
               register={registerSignin}
             />
+            {errorsSignin.email && (
+              <ErrorSpan>{errorsSignin.email.message}</ErrorSpan>
+            )}
             <InputComponent
               name="password"
               type="password"
@@ -121,12 +141,36 @@ export default function Header() {
             changeModal={changeModal}
             text="Não possui uma conta? Clique aqui."
           />
-          {/* <form id="registerForm">
-            <InputComponent type="text" title="Nome:" width="100%" />
-            <InputComponent type="text" title="Email:" width="100%" />
-            <InputComponent type="password" title="Senha:" width="100%" />
+          <form id="registerForm" onSubmit={handleSubmitSignup(upHandleSubmit)}>
+            <InputComponent
+              name="name"
+              type="text"
+              title="Nome:"
+              width="100%"
+              register={registerSigup}
+            />
+            <InputComponent
+              name="email"
+              type="text"
+              title="Email:"
+              width="100%"
+              register={registerSigup}
+            />
+            {errorsSignup.email && (
+              <ErrorSpan>{errorsSignup.email.message}</ErrorSpan>
+            )}
+            <InputComponent
+              name="password"
+              type="password"
+              title="Senha:"
+              width="100%"
+              register={registerSigup}
+            />
+            {errorsSignup.password && (
+              <ErrorSpan>{errorsSignup.password.message}</ErrorSpan>
+            )}
             <SubmitButton title="Cadastrar-se" width="100%" />
-          </form> */}
+          </form>
           <NavModalButton
             display={dilpayRegisterNavButton}
             idModalButton="registerForm"
