@@ -25,14 +25,14 @@ export const LogOut = styled.div`
   button {
     width: 25px;
     height: 25px;
-    background-image: url("./public/logout.svg");
+    background-image: url("./logout.svg");
     background-repeat: no-repeat;
     background-position: center;
   }
 
   &:hover {
     button {
-      background-image: url("./public/logoutHover.svg");
+      background-image: url("./logoutHover.svg");
     }
     p {
       color: #0a7de8;
