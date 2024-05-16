@@ -3,11 +3,16 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import { GlobalStyled } from "./GlobalStyled";
+import College from "./pages/Colleges/College.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element: <Home />,
+  },
+  {
+    path: "/college",
+    element: <College />,
   },
 ]);
 

@@ -5,6 +5,15 @@ export const HeaderDiv = styled.div`
   flex-direction: column;
   align-items: end;
   width: 100%;
+
+  #loginButton {
+    font-size: 20px;
+    font-weight: 600;
+    width: 130px;
+    align-self: flex-end;
+    margin-right: 30px;
+    border-radius: 10px;
+  }
 `;
 export const LogOut = styled.div`
   margin-right: 20px;
@@ -44,7 +53,7 @@ export const LogOut = styled.div`
 export const ErrorSpan = styled.span`
   background-color: #ffcdcd;
   color: #9e0000;
-  padding: .5rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: center;
   font-size: 1rem;

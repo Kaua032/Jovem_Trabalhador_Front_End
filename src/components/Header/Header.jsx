@@ -106,7 +106,6 @@ export default function Header() {
           Entrar
         </Button>
       )}
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title id="modalTitle">Entrar</Modal.Title>
