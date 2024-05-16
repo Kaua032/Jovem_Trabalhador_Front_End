@@ -3,6 +3,7 @@ import { MainHome } from "./HomeStyled";
 import Header from "../../components/Header/Header";
 import InputComponent from "../../components/Input/InputComponent";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
+import InputSelect from "../../components/InputSelect/InputSelect";
 
 export default function Home() {
   function bla(){
@@ -42,6 +43,7 @@ export default function Home() {
             width="300px"
             register={bla}
           />
+          <InputSelect name="Node do Colegio" width="300px" />
           <SubmitButton type="submit" title="Adicionar" width="300px" />
         </form>
       </div>
