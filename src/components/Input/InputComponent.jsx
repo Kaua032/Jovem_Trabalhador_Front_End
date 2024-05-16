@@ -1,13 +1,22 @@
 import { InputArea } from "./InputStyled";
 
-export default function InputComponent({ register, name, ...props }) {
+export default function InputComponent({
+  register,
+  name,
+  width,
+  title,
+  type,
+  plaHolder,
+  id,
+}) {
   return (
-    <InputArea width={props.width}>
-      <p>{props.title}</p>
+    <InputArea width={width}>
+      <p>{title}</p>
       <input
-        type={props.type}
-        placeholder={props.plaHolder}
-        {...register(name)}
+        id={id}
+        type={type}
+        placeholder={plaHolder}
+        {...(register && register(name))}
       />
     </InputArea>
   );
