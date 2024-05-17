@@ -1,6 +1,23 @@
+import { useEffect, useState } from "react";
 import { ListArea } from "./CollegeListStyled";
+import { getAllColleges } from "../../services/collegeService";
 
 export default function CollegeList() {
+  const [allColleges, setAllColleges] = useState([]);
+
+  async function findAllColleges() {
+    try {
+      const response = await getAllColleges();
+
+      setAllColleges(response.data.colleges);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    findAllColleges();
+  }, []);
   return (
     <ListArea>
       <div>
@@ -20,17 +37,19 @@ export default function CollegeList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <p>1º</p>
-              </td>
-              <td>
-                <p>Sesi</p>
-              </td>
-              <td>
-                <p>Maceió / Al</p>
-              </td>
-            </tr>
+            {allColleges.map((college, index) => (
+              <tr key={index}>
+                <td>
+                  <p>{index + 1}º</p>
+                </td>
+                <td>
+                  <p>{college.name}</p>
+                </td>
+                <td>
+                  <p>{college.city}</p>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

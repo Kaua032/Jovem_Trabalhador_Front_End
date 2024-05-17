@@ -30,6 +30,7 @@ export default function College() {
       currentColleges.push({ nameCollege, nameCityCollege });
 
       localStorage.setItem("colleges", JSON.stringify(currentColleges));
+      setInfoAllColleges(currentColleges);
       document.getElementById("nameCollege").value = "";
       document.getElementById("nameCityCollege").value = "";
     }
@@ -37,7 +38,7 @@ export default function College() {
 
   useEffect(() => {
     setInfoAllColleges(JSON.parse(localStorage.getItem("colleges")) || []);
-  });
+  }, []);
   return (
     <MainCollege>
       <Navbar p4={1} />;
