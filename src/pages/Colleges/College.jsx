@@ -36,6 +36,8 @@ export default function College() {
     }
   }
 
+  async function submitColleges(){}
+
   useEffect(() => {
     setInfoAllColleges(JSON.parse(localStorage.getItem("colleges")) || []);
   }, []);
@@ -111,6 +113,11 @@ export default function College() {
               </tbody>
             </table>
           </div>
+          <SubmitButton
+            onClick={submitColleges}
+            title="Adicionar ao Banco"
+            width="100%"
+          />
         </div>
         <CollegeList />
       </SectionCollege>
