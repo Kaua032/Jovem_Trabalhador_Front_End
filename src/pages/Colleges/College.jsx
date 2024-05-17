@@ -51,10 +51,9 @@ export default function College() {
     console.log(colleges);
 
     if (colleges.length == 0) {
-      return;
+      return alert("Você não possui instituições cadastradas")
     }
     const response = await registerColleges(colleges);
-    console.log(response);
     if (response.status == 200) {
       alert(response.data.message);
       return;
@@ -77,7 +76,7 @@ export default function College() {
   }, []);
   return (
     <MainCollege>
-      <Navbar p4={1} />;
+      <Navbar p4={1} />
       <Header />
       <SectionCollege>
         <div id="addCollegeArea">

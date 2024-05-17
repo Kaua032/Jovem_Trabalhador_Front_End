@@ -5,6 +5,7 @@ export const HeaderDiv = styled.div`
   flex-direction: column;
   align-items: end;
   width: 100%;
+  padding: 30px 20px 40px 0px;
 
   #loginButton {
     font-size: 20px;

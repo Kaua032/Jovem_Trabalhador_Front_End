@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import { GlobalStyled } from "./GlobalStyled";
 import College from "./pages/Colleges/College.jsx";
+import Courses from "./pages/Courses/Courses.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/college",
     element: <College />,
+  },
+  {
+    path: "/courses",
+    element: <Courses />,
   },
 ]);
 

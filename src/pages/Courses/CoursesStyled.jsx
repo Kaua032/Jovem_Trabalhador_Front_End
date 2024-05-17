@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
-export const MainCollege = styled.main`
+export const MainCourse = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const SectionCollege = styled.section`
+export const SectionCourse = styled.section`
   display: flex;
   gap: 100px;
 
-  #addCollegeArea {
+  #addCourseArea {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-  #addCollegeArea #form-college {
+  #addCourseArea #form-course {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,13 +25,14 @@ export const SectionCollege = styled.section`
     border-radius: 15px;
     border: 1px solid #bababa;
   }
+
   h2 {
     font-size: 20px;
     font-weight: bold;
     color: #454545;
   }
 
-  #addCollegeArea #collegesLocalList {
+  #addCourseArea #coursesLocalList {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,20 +42,20 @@ export const SectionCollege = styled.section`
     border-radius: 15px;
     border: 1px solid #bababa;
   }
-  #addCollegeArea table {
+  #addCourseArea table {
     width: 100%;
   }
-  #addCollegeArea table thead {
+  #addCourseArea table thead {
     font-size: 18px;
     font-weight: bold;
     color: #454545;
   }
-  #addCollegeArea table tbody {
+  #addCourseArea table tbody {
     font-size: 12px;
     font-weight: 500;
     color: #525668;
   }
-  #addCollegeArea table th p {
+  #addCourseArea table th p {
     text-align: center;
   }
 `;

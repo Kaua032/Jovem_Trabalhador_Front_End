@@ -11,7 +11,7 @@ export default function Home() {
   }
   return (
     <MainHome>
-      <Navbar p1={1} />;
+      <Navbar p1={1} />
       <Header />
       <div id="formStudent">
         <InputComponent
