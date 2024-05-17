@@ -4,6 +4,7 @@ import InputComponent from "../../components/Input/InputComponent";
 import Navbar from "../../components/Navbar/Navbar";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { MainCollege, SectionCollege } from "./CollegeStyled";
+import CollegeList from "../../components/CollegesList/CollegeList";
 
 export default function College() {
   const [infoAllColleges, setInfoAllColleges] = useState([]);
@@ -110,7 +111,7 @@ export default function College() {
             </table>
           </div>
         </div>
-        <div></div>
+        <CollegeList />
       </SectionCollege>
     </MainCollege>
   );

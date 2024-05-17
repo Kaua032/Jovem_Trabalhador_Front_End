@@ -8,6 +8,7 @@ export const MainCollege = styled.main`
 
 export const SectionCollege = styled.section`
   display: flex;
+  gap: 100px;
 
   #addCollegeArea {
     display: flex;
