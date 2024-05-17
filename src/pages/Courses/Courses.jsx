@@ -6,6 +6,7 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { MainCourse, SectionCourse } from "./CoursesStyled";
 import Cookies from "js-cookie";
 import { registerCourses } from "../../services/courseService";
+import CourseList from "../../components/CoursesList/CoursesList";
 
 export default function Courses() {
   const [infoAllCourses, setInfoAllCourses] = useState([]);
@@ -133,6 +134,7 @@ export default function Courses() {
             width="100%"
           />
         </div>
+        <CourseList />
       </SectionCourse>
     </MainCourse>
   );
