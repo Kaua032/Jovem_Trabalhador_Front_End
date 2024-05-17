@@ -5,12 +5,16 @@ import Navbar from "../../components/Navbar/Navbar";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { MainCollege, SectionCollege } from "./CollegeStyled";
 import CollegeList from "../../components/CollegesList/CollegeList";
+import { registerColleges } from "../../services/collegeService";
+import Cookies from "js-cookie";
 
 export default function College() {
   const [infoAllColleges, setInfoAllColleges] = useState([]);
 
   function handleDeleteCollege(index) {
-    const currentColleges = JSON.parse(localStorage.getItem("colleges")) || [];
+    const currentColleges = localStorage.getItem("colleges")
+      ? JSON.parse(localStorage.getItem("colleges"))
+      : [];
 
     currentColleges.splice(index, 1);
 
@@ -23,11 +27,12 @@ export default function College() {
     const nameCollege = document.getElementById("nameCollege").value;
     const nameCityCollege = document.getElementById("nameCityCollege").value;
 
-    if ((nameCollege != "") & (nameCityCollege != "")) {
-      const currentColleges =
-        JSON.parse(localStorage.getItem("colleges")) || [];
+    if ((nameCollege !== "") & (nameCityCollege !== "")) {
+      const currentColleges = localStorage.getItem("colleges")
+        ? JSON.parse(localStorage.getItem("colleges"))
+        : [];
 
-      currentColleges.push({ nameCollege, nameCityCollege });
+      currentColleges.push({ name: nameCollege, city: nameCityCollege });
 
       localStorage.setItem("colleges", JSON.stringify(currentColleges));
       setInfoAllColleges(currentColleges);
@@ -36,10 +41,39 @@ export default function College() {
     }
   }
 
-  async function submitColleges(){}
+  async function submitColleges() {
+    if (!Cookies.get("token")) {
+      return alert("Você precisa estar logado para realizar essa ação");
+    }
+    const colleges = localStorage.getItem("colleges")
+      ? JSON.parse(localStorage.getItem("colleges"))
+      : [];
+    console.log(colleges);
+
+    if (colleges.length == 0) {
+      return;
+    }
+    const response = await registerColleges(colleges);
+    console.log(response);
+    if (response.status == 200) {
+      alert(response.data.message);
+      return;
+    } else if (response.status == 201) {
+      localStorage.setItem("colleges", []);
+      setInfoAllColleges([]);
+      alert(response.data.message);
+      window.location.reload();
+    }
+
+    return;
+  }
 
   useEffect(() => {
-    setInfoAllColleges(JSON.parse(localStorage.getItem("colleges")) || []);
+    setInfoAllColleges(
+      localStorage.getItem("colleges")
+        ? JSON.parse(localStorage.getItem("colleges"))
+        : []
+    );
   }, []);
   return (
     <MainCollege>
@@ -95,10 +129,10 @@ export default function College() {
                       <p>{index + 1}º</p>
                     </th>
                     <th>
-                      <p>{college.nameCollege}</p>
+                      <p>{college.name}</p>
                     </th>
                     <th>
-                      <p>{college.nameCityCollege}</p>
+                      <p>{college.city}</p>
                     </th>
                     <th>
                       <button
