@@ -48,7 +48,6 @@ export default function College() {
     const colleges = localStorage.getItem("colleges")
       ? JSON.parse(localStorage.getItem("colleges"))
       : [];
-    console.log(colleges);
 
     if (colleges.length == 0) {
       return alert("Você não possui instituições cadastradas")

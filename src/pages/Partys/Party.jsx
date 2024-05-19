@@ -1,10 +1,70 @@
+import { useState } from "react";
 import Header from "../../components/Header/Header";
 import InputComponent from "../../components/Input/InputComponent";
 import Navbar from "../../components/Navbar/Navbar";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { MainParty, SectionParty } from "./PartyStyled";
+import Cookies from "js-cookie";
 
 export default function Party() {
+  const [infoAllPartys, setInfoAllPartys] = useState([]);
+
+  function handleDeleteParty(index) {
+    const currentPartys = localStorage.getItem("partys")
+      ? JSON.parse(localStorage.getItem("partys"))
+      : [];
+
+    currentPartys.splice(index, 1);
+
+    localStorage.setItem("partys", JSON.stringify(currentPartys));
+
+    setInfoAllPartys(currentPartys);
+  }
+
+  function registerParty() {
+    const gradeParty = document.getElementById("nameParty").value;
+    const timeParty = document.getElementById("timeParty").value;
+
+    if (gradeParty !== "" && timeParty !== "") {
+      const currentPartys = localStorage.getItem("partys")
+        ? JSON.parse(localStorage.getItem("partys"))
+        : [];
+
+      currentPartys.push({ grade: gradeParty, time: timeParty });
+
+      localStorage.setItem("partys", JSON.stringify(currentPartys));
+      setInfoAllPartys(currentPartys);
+      document.getElementById("nameParty").value = "";
+      document.getElementById("timeParty").value = "";
+    }
+  }
+
+  async function submitPartys() {
+    if (!Cookies.get("token")) {
+      return alert("Você precisa estar logado para realizar essa ação");
+    }
+
+    const partys = localStorage.getItem("partys")
+      ? JSON.parse(localStorage.getItem("partys"))
+      : [];
+
+    if (partys.length == 0) {
+      return alert("Você não possui turmas cadastradas");
+    }
+    const response = await registerPartys(partys);
+    if (response.status == 200) {
+      alert(response.data.message);
+      return;
+    } else if (response.status == 201) {
+      localStorage.setItem("partys", []);
+      setInfoAllPartys([]);
+      alert(response.data.message);
+      window.location.reload();
+    }
+
+    return;
+  }
+
   return (
     <MainParty>
       <Navbar p6={1} />
@@ -25,7 +85,7 @@ export default function Party() {
               type="text"
               title="Horário:"
               width="300px"
-              id="nameParty"
+              id="timeParty"
             />
             <SubmitButton title="Adicionar" width="300px" />
           </div>
@@ -50,10 +110,7 @@ export default function Party() {
               </thead>
             </table>
           </div>
-          <SubmitButton
-            title="Adicionar ao Banco"
-            width="100%"
-          />
+          <SubmitButton title="Adicionar ao Banco" width="100%" />
         </div>
       </SectionParty>
     </MainParty>
