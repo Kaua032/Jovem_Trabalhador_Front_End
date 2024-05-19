@@ -106,7 +106,7 @@ export default function Party() {
           </div>
           <div id="partysLocalList">
             <h2>Turmas na Rede Local</h2>
-            <table>
+            <table id="local">
               <thead>
                 <tr>
                   <th>
@@ -139,9 +139,7 @@ export default function Party() {
                       <button
                         id={`delete-${index}`}
                         onClick={() => handleDeleteParty(index)}
-                      >
-                        D
-                      </button>
+                      ></button>
                     </th>
                   </tr>
                 ))}

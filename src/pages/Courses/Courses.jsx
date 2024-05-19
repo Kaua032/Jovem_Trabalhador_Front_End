@@ -35,6 +35,7 @@ export default function Courses() {
 
       localStorage.setItem("courses", JSON.stringify(currentCourses));
       setInfoAllCourses(currentCourses);
+      document.getElementById("nameCourse").value = "";
     }
   }
 
@@ -92,7 +93,7 @@ export default function Courses() {
           </div>
           <div id="coursesLocalList">
             <h2>Cursos na Rede Local</h2>
-            <table>
+            <table id="local">
               <thead>
                 <tr>
                   <th>
@@ -119,9 +120,7 @@ export default function Courses() {
                       <button
                         id={`delete-${index}`}
                         onClick={() => handleDeleteCourse(index)}
-                      >
-                        D
-                      </button>
+                      ></button>
                     </th>
                   </tr>
                 ))}

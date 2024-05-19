@@ -50,7 +50,7 @@ export default function College() {
       : [];
 
     if (colleges.length == 0) {
-      return alert("Você não possui instituições cadastradas")
+      return alert("Você não possui instituições cadastradas");
     }
     const response = await registerColleges(colleges);
     if (response.status == 200) {
@@ -103,7 +103,7 @@ export default function College() {
           </div>
           <div id="collegesLocalList">
             <h2>Instituições na Rede Local</h2>
-            <table>
+            <table id="local">
               <thead>
                 <tr>
                   <th>
@@ -136,9 +136,7 @@ export default function College() {
                       <button
                         id={`delete-${index}`}
                         onClick={() => handleDeleteCollege(index)}
-                      >
-                        D
-                      </button>
+                      ></button>
                     </th>
                   </tr>
                 ))}

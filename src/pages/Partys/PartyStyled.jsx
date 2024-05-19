@@ -49,6 +49,19 @@ export const SectionParty = styled.section`
     font-weight: bold;
     color: #454545;
   }
+  #local tr {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 0px 10px;
+  }
+  #remota tr {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 0px 20px;
+  }
+  table tbody tr {
+    border-top: 1px solid #bababa;
+  }
   #addPartyArea table tbody {
     font-size: 12px;
     font-weight: 500;
@@ -56,5 +69,14 @@ export const SectionParty = styled.section`
   }
   #addPartyArea table th p {
     text-align: center;
+  }
+  #addPartyArea table th button {
+    border: none;
+    width: 15px;
+    height: 16.67px;
+    background-image: url("./deleteIcon.png");
+    background-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 `;

@@ -22,7 +22,7 @@ export default function CollegeList() {
     <ListArea>
       <div>
         <h2>Instituições na Rede Remota</h2>
-        <table>
+        <table id="remota">
           <thead>
             <tr>
               <td>

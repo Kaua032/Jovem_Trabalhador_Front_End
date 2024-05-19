@@ -24,7 +24,7 @@ export const ListArea = styled.div`
     color: #454545;
   }
   table tbody {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
     color: #525668;
   }

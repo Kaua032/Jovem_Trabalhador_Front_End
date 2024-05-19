@@ -55,7 +55,29 @@ export const SectionCourse = styled.section`
     font-weight: 500;
     color: #525668;
   }
+  #local tr {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 0px 10px;
+  }
+  #remota tr {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 0px 20px;
+  }
+  table tbody tr {
+    border-top: 1px solid #bababa;
+  }
   #addCourseArea table th p {
     text-align: center;
+  }
+  #addCourseArea table th button {
+    border: none;
+    width: 15px;
+    height: 16.67px;
+    background-image: url("./deleteIcon.png");
+    background-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 `;
