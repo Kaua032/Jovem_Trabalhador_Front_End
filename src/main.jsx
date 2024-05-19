@@ -6,6 +6,8 @@ import { GlobalStyled } from "./GlobalStyled";
 import College from "./pages/Colleges/College.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
 import Party from "./pages/Partys/Party.jsx";
+import { ListGroupItem } from "react-bootstrap";
+import ListRemoteStudent from "./pages/ListRemoteStudents/ListRemoteStudents.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/party",
     element: <Party />,
+  },
+  {
+    path: "/remoteStudents",
+    element: <ListRemoteStudent />,
   },
 ]);
 
