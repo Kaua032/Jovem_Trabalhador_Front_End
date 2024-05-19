@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import InputComponent from "../../components/Input/InputComponent";
 import Navbar from "../../components/Navbar/Navbar";
@@ -6,6 +6,7 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { MainParty, SectionParty } from "./PartyStyled";
 import Cookies from "js-cookie";
 import { registerPartys } from "../../services/partyService";
+import PartyList from "../../components/PartysList/PartyList";
 
 export default function Party() {
   const [infoAllPartys, setInfoAllPartys] = useState([]);
@@ -52,7 +53,9 @@ export default function Party() {
     if (partys.length == 0) {
       return alert("Você não possui turmas cadastradas");
     }
+
     const response = await registerPartys(partys);
+
     if (response.status == 200) {
       alert(response.data.message);
       return;
@@ -66,6 +69,13 @@ export default function Party() {
     return;
   }
 
+  useEffect(() => {
+    setInfoAllPartys(
+      localStorage.getItem("partys")
+        ? JSON.parse(localStorage.getItem("partys"))
+        : []
+    );
+  }, []);
   return (
     <MainParty>
       <Navbar p6={1} />
@@ -144,6 +154,7 @@ export default function Party() {
             width="100%"
           />
         </div>
+        <PartyList />
       </SectionParty>
     </MainParty>
   );
