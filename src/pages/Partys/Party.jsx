@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { MainParty, SectionParty } from "./PartyStyled";
 import Cookies from "js-cookie";
+import { registerPartys } from "../../services/partyService";
 
 export default function Party() {
   const [infoAllPartys, setInfoAllPartys] = useState([]);
@@ -87,7 +88,11 @@ export default function Party() {
               width="300px"
               id="timeParty"
             />
-            <SubmitButton title="Adicionar" width="300px" />
+            <SubmitButton
+              onClick={registerParty}
+              title="Adicionar"
+              width="300px"
+            />
           </div>
           <div id="partysLocalList">
             <h2>Turmas na Rede Local</h2>
@@ -108,9 +113,36 @@ export default function Party() {
                   </th>
                 </tr>
               </thead>
+              <tbody>
+                {infoAllPartys.map((party, index) => (
+                  <tr key={index}>
+                    <th>
+                      <p>{index + 1}º</p>
+                    </th>
+                    <th>
+                      <p>{party.grade}</p>
+                    </th>
+                    <th>
+                      <p>{party.time}</p>
+                    </th>
+                    <th>
+                      <button
+                        id={`delete-${index}`}
+                        onClick={() => handleDeleteParty(index)}
+                      >
+                        D
+                      </button>
+                    </th>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
-          <SubmitButton title="Adicionar ao Banco" width="100%" />
+          <SubmitButton
+            onClick={submitPartys}
+            title="Adicionar ao Banco"
+            width="100%"
+          />
         </div>
       </SectionParty>
     </MainParty>
