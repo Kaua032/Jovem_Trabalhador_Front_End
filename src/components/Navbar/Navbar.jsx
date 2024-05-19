@@ -13,7 +13,7 @@ export default function Navbar({ ...props }) {
         <NavbarComponent href="/" type={props.p3} name="Alunos Remota" />
         <NavbarComponent href="/college" type={props.p4} name="Instituições" />
         <NavbarComponent href="/courses" type={props.p5} name="Cursos" />
-        <NavbarComponent href="/" type={props.p6} name="Turmas" />
+        <NavbarComponent href="/party" type={props.p6} name="Turmas" />
         <NavbarComponent href="/" type={props.p7} name="Gerar Lista de Alunos" />
         <NavbarComponent href="/" type={props.p8} name="Exportar CSV" />
       </div>

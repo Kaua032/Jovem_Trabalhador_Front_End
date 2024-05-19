@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home.jsx";
 import { GlobalStyled } from "./GlobalStyled";
 import College from "./pages/Colleges/College.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
+import Party from "./pages/Partys/Party.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/courses",
     element: <Courses />,
+  },
+  {
+    path: "/party",
+    element: <Party />,
   },
 ]);
 
