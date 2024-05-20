@@ -89,14 +89,7 @@ export default function College() {
               width="300px"
               id="nameCollege"
             />
-            <InputComponent
-              name="city"
-              type="text"
-              title="Cidade:"
-              width="300px"
-              id="nameCityCollege"
-            />
-            <SelectCity />
+            <SelectCity width="100%" id="nameCityCollege" />
             <SubmitButton
               onClick={registerCollege}
               title="Adicionar"

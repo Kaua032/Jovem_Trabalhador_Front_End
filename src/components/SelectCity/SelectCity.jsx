@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { GetAllCitiesFromAl } from "../../services/cities";
+import { SelectStyle } from "./SelectCityStyled";
 
-export default function SelectCity() {
+export default function SelectCity({ width, id }) {
   const [cities, setCities] = useState([]);
 
   async function GetAllCities() {
@@ -22,9 +23,9 @@ export default function SelectCity() {
     GetAllCities();
   });
   return (
-    <>
-      <select name="" id="">
-        <option value="0">Cidade</option>
+    <SelectStyle width={width}>
+      <p>Cidade:</p>
+      <select name="" id={id}>
         {cities.map((city) => (
           <option
             key={city.id}
@@ -34,6 +35,6 @@ export default function SelectCity() {
           </option>
         ))}
       </select>
-    </>
+    </SelectStyle>
   );
 }
