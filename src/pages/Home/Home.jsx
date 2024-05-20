@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import InputComponent from "../../components/Input/InputComponent";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
+import { SelectParty } from "../../components/SelectParty/SelectParty";
 
 export default function Home() {
   return (
@@ -41,6 +42,7 @@ export default function Home() {
             <SelectCollege width="300px" />
           </div>
           <div id="formStudent2">
+            <SelectParty width="300px" />
             <SubmitButton type="submit" title="Adicionar" width="300px" />
           </div>
         </div>
