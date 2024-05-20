@@ -6,12 +6,14 @@ export const MainHome = styled.main`
   align-items: center;
 
   #formStudent {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
     background-color: white;
     border-radius: 15px;
     border: 1px solid #bababa;
     padding: 25px 20px;
+  }
+  #formStudent1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 `;
