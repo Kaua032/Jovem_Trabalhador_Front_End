@@ -21,7 +21,7 @@ export const ListAreaRemoteStudents = styled.div`
   }
   #listArea {
     width: 720px;
-
+    height: 571px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,5 +70,30 @@ export const ListAreaRemoteStudents = styled.div`
     width: 15px;
     height: 16.67px;
     background-image: url("./deleteIcon.png");
+  }
+  #buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  #buttons p {
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #454545;
+  }
+  #left,
+  #right {
+    border: none;
+    background-color: #f6f7f9;
+    color: #525668;
+    font-size: 30px;
+    font-weight: 500;
+  }
+  #left:hover,
+  #right:hover {
+    opacity: 0.85;
   }
 `;
