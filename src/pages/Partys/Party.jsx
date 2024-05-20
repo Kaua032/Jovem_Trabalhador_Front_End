@@ -7,6 +7,7 @@ import { MainParty, SectionParty } from "./PartyStyled";
 import Cookies from "js-cookie";
 import { registerPartys } from "../../services/partyService";
 import PartyList from "../../components/PartysList/PartyList";
+import SelectTime from "../../components/SelectTime/SelectTime";
 
 export default function Party() {
   const [infoAllPartys, setInfoAllPartys] = useState([]);
@@ -91,13 +92,7 @@ export default function Party() {
               width="300px"
               id="nameParty"
             />
-            <InputComponent
-              name="grade"
-              type="text"
-              title="Horário:"
-              width="300px"
-              id="timeParty"
-            />
+            <SelectTime width="300px" id="timeParty" />
             <SubmitButton
               onClick={registerParty}
               title="Adicionar"

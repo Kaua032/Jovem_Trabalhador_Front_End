@@ -24,7 +24,8 @@ export const MainHome = styled.main`
     display: flex;
     gap: 80px;
   }
-  #formStudent1 {
+  #formStudent1,
+  #formStudent2 {
     display: flex;
     flex-direction: column;
     gap: 20px;
