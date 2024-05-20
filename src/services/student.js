@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const baseURL = "http://localhost:2000";
 
@@ -10,11 +9,7 @@ export function getAllStudentsByPage(data) {
 }
 
 export function getAllStudentsBySearch(data) {
-  const response = axios.get(`${baseURL}/student/search`, data, {
-    headers: {
-      Authorization: `Bearer ${Cookies.get("token")}`,
-    },
-  });
+  const response = axios.post(`${baseURL}/student/search`, data);
 
   return response;
 }

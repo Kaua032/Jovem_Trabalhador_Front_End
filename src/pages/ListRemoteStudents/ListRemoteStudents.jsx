@@ -5,18 +5,39 @@ import {
   ListAreaRemoteStudents,
   MainRemoteStudents,
 } from "./ListRemoteStudentsStyled";
-import { getAllStudentsByPage } from "../../services/student";
+import {
+  getAllStudentsByPage,
+  getAllStudentsBySearch,
+} from "../../services/student";
 import Cookies from "js-cookie";
 
 export default function ListRemoteStudent() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
   const [page, setPage] = useState(1);
 
+  async function SearchStudent() {
+    if (Cookies.get("token")) {
+      const searchTerm = document.getElementById("searchStudent").value;
+
+      if (searchTerm.length == 0) {
+        return findAllStudents(1);
+      }
+      const response = await getAllStudentsBySearch({ searchTerm });
+      setInfoAllStudents(response.data.students);
+
+      document.getElementById("right").style.display = "none";
+      document.getElementById("left").style.display = "none";
+      document.getElementById("page").style.display = "none";
+    } else {
+      alert("Você precisa está logado para a pesquisa funcionar");
+    }
+  }
+
   async function findAllStudents(page) {
     try {
       const response = await getAllStudentsByPage({ page });
       setInfoAllStudents(response.data.students);
-      console.log(response.data.nextPage);
+      document.getElementById("page").style.display = "flex";
       if (!response.data.nextPage) {
         document.getElementById("right").style.display = "none";
       } else {
@@ -56,8 +77,12 @@ export default function ListRemoteStudent() {
       <Header />
       <ListAreaRemoteStudents>
         <div>
-          <input id="searchStudent" type="text" placeholder="Pesquisar..." />
-          <button></button>
+          <input
+            onChange={SearchStudent}
+            id="searchStudent"
+            type="text"
+            placeholder="Pesquisar..."
+          />
         </div>
         <div id="listArea">
           <h2>Lista de Estudantes Remota</h2>
@@ -94,7 +119,10 @@ export default function ListRemoteStudent() {
                 <tr id="noLogin">
                   <td colSpan="7">
                     <img src="./alerta.png" alt="" />
-                    <p>Você precisa está logado para ver os alunos da Rede remota.</p>
+                    <p>
+                      Você precisa está logado para ver os alunos da Rede
+                      remota.
+                    </p>
                   </td>
                 </tr>
               )}
@@ -105,7 +133,7 @@ export default function ListRemoteStudent() {
           <button id="left" onClick={handlePreviousPage}>
             &#60;
           </button>
-          <p>{page}</p>
+          <p id="page">{page}</p>
           <button id="right" onClick={handleNextPage}>
             &#62;
           </button>

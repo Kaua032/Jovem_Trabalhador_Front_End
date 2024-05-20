@@ -21,7 +21,7 @@ export const ListAreaRemoteStudents = styled.div`
   }
   #listArea {
     width: 720px;
-    height: 571px;
+    min-height: 571px;
     display: flex;
     flex-direction: column;
     align-items: center;
