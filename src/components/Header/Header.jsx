@@ -35,6 +35,7 @@ export default function Header() {
       const response = await signin(data);
       Cookies.set("token", response.data.token, { expires: 1 });
       handleClose();
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -53,6 +54,7 @@ export default function Header() {
       const response = await signup(data);
       Cookies.set("token", response.data.token, { expires: 1 });
       handleClose();
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

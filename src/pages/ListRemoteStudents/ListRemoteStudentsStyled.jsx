@@ -96,4 +96,13 @@ export const ListAreaRemoteStudents = styled.div`
   #right:hover {
     opacity: 0.85;
   }
+  #noLogin img {
+    width: 40%;
+  }
+  #noLogin p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+  }
 `;

@@ -6,6 +6,7 @@ import {
   MainRemoteStudents,
 } from "./ListRemoteStudentsStyled";
 import { getAllStudentsByPage } from "../../services/student";
+import Cookies from "js-cookie";
 
 export default function ListRemoteStudent() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
@@ -73,21 +74,30 @@ export default function ListRemoteStudent() {
               </tr>
             </thead>
             <tbody>
-              {infoAllStudents.map((student, index) => (
-                <tr key={student._id}>
-                  <td>{index + 1}º</td>
-                  <td>{student.name}</td>
-                  <td>{student.phone}</td>
-                  <td>{student.responsible_name}</td>
-                  <td>{calculateAge(student.born_date)} anos</td>
-                  <td>
-                    <button className="editButton"></button>
-                  </td>
-                  <td>
-                    <button className="deleteButton"></button>
+              {Cookies.get("token") ? (
+                infoAllStudents.map((student, index) => (
+                  <tr key={student._id}>
+                    <td>{index + 1}º</td>
+                    <td>{student.name}</td>
+                    <td>{student.phone}</td>
+                    <td>{student.responsible_name}</td>
+                    <td>{calculateAge(student.born_date)} anos</td>
+                    <td>
+                      <button className="editButton"></button>
+                    </td>
+                    <td>
+                      <button className="deleteButton"></button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr id="noLogin">
+                  <td colSpan="7">
+                    <img src="./alerta.png" alt="" />
+                    <p>Você precisa está logado para ver os alunos da Rede remota.</p>
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
