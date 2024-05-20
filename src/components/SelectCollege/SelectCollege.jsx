@@ -24,7 +24,7 @@ export function SelectCollege({ width, id }) {
     console.log(collegesLocal);
   });
   return (
-    <SelectArea>
+    <SelectArea width={width}>
       <p>Instituição:</p>
       <select name="" id={id}>
         <option value="">Selecione</option>
