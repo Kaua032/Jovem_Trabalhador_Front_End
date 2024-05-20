@@ -14,7 +14,6 @@ export default function SelectCity({ width, id }) {
       setCities(localStorage.getItem("cities"));
     } else {
       const storedCities = JSON.parse(localStorage.getItem("cities"));
-      console.log(storedCities);
       setCities(storedCities);
     }
   }
@@ -26,6 +25,7 @@ export default function SelectCity({ width, id }) {
     <SelectStyle width={width}>
       <p>Cidade:</p>
       <select name="" id={id}>
+        <option value="">Selecione</option>
         {cities.map((city) => (
           <option
             key={city.id}

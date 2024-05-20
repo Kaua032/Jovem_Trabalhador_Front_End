@@ -3,7 +3,7 @@ import { MainHome } from "./HomeStyled";
 import Header from "../../components/Header/Header";
 import InputComponent from "../../components/Input/InputComponent";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
-import InputSelect from "../../components/InputSelect/InputSelect";
+import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 
 export default function Home() {
   return (
@@ -36,6 +36,7 @@ export default function Home() {
             title="Data de nascimento:"
             width="300px"
           />
+          <SelectCollege width="300px" />
           <SubmitButton type="submit" title="Adicionar" width="300px" />
         </div>
         <div id="formStudent2">
