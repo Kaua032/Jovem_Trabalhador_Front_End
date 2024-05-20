@@ -20,8 +20,6 @@ export function SelectCollege({ width, id }) {
 
   useEffect(() => {
     getRemoteColleges();
-    console.log(collegesRemote);
-    console.log(collegesLocal);
   });
   return (
     <SelectArea width={width}>
