@@ -60,7 +60,6 @@ export const SectionCollege = styled.section`
   #remota tr {
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px 0px 20px;
   }
   table tbody tr {
     border-top: 1px solid #bababa;

@@ -25,29 +25,17 @@ export default function CollegeList() {
         <table id="remota">
           <thead>
             <tr>
-              <td>
-                <p>Nº</p>
-              </td>
-              <td>
-                <p>Nome</p>
-              </td>
-              <td>
-                <p>Cidade</p>
-              </td>
+              <th>Nº</th>
+              <th>Nome</th>
+              <th>Cidade</th>
             </tr>
           </thead>
           <tbody>
             {allColleges.map((college, index) => (
               <tr key={index}>
-                <td>
-                  <p>{index + 1}º</p>
-                </td>
-                <td>
-                  <p>{college.name}</p>
-                </td>
-                <td>
-                  <p>{college.city}</p>
-                </td>
+                <td>{index + 1}º</td>
+                <td>{college.name}</td>
+                <td>{college.city}</td>
               </tr>
             ))}
           </tbody>

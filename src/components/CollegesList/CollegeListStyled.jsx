@@ -28,7 +28,12 @@ export const ListArea = styled.div`
     font-weight: 500;
     color: #525668;
   }
-  table td p {
+  table th{
     text-align: center;
+    padding: 10px;
+  }
+  table td {
+    text-align: center;
+    padding: 10px;
   }
 `;
