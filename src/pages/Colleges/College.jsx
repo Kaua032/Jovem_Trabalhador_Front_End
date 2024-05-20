@@ -7,6 +7,7 @@ import { MainCollege, SectionCollege } from "./CollegeStyled";
 import CollegeList from "../../components/CollegesList/CollegeList";
 import { registerColleges } from "../../services/collegeService";
 import Cookies from "js-cookie";
+import SelectCity from "../../components/SelectCity/SelectCity";
 
 export default function College() {
   const [infoAllColleges, setInfoAllColleges] = useState([]);
@@ -95,6 +96,7 @@ export default function College() {
               width="300px"
               id="nameCityCollege"
             />
+            <SelectCity />
             <SubmitButton
               onClick={registerCollege}
               title="Adicionar"
