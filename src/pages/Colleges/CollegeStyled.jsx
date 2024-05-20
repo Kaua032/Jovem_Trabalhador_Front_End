@@ -54,10 +54,8 @@ export const SectionCollege = styled.section`
     font-weight: 500;
     color: #525668;
   }
-  #local tr {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 0px 10px;
+  #local tr td, #local tr th {
+    padding: 10px;
   }
   #remota tr {
     display: flex;
@@ -67,10 +65,10 @@ export const SectionCollege = styled.section`
   table tbody tr {
     border-top: 1px solid #bababa;
   }
-  #addCollegeArea table th p {
+  #addCollegeArea table th {
     text-align: center;
   }
-  #addCollegeArea table th button {
+  #addCollegeArea table td button {
     border: none;
     width: 15px;
     height: 16.67px;

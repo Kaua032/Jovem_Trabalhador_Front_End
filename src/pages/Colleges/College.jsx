@@ -106,38 +106,24 @@ export default function College() {
             <table id="local">
               <thead>
                 <tr>
-                  <th>
-                    <p>Nº</p>
-                  </th>
-                  <th>
-                    <p>Nome</p>
-                  </th>
-                  <th>
-                    <p>Cidade</p>
-                  </th>
-                  <th>
-                    <p></p>
-                  </th>
+                  <th>Nº</th>
+                  <th>Nome</th>
+                  <th>Cidade</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {infoAllColleges.map((college, index) => (
                   <tr key={index}>
-                    <th>
-                      <p>{index + 1}º</p>
-                    </th>
-                    <th>
-                      <p>{college.name}</p>
-                    </th>
-                    <th>
-                      <p>{college.city}</p>
-                    </th>
-                    <th>
+                    <td>{index + 1}º</td>
+                    <td>{college.name}</td>
+                    <td>{college.city}</td>
+                    <td>
                       <button
                         id={`delete-${index}`}
                         onClick={() => handleDeleteCollege(index)}
                       ></button>
-                    </th>
+                    </td>
                   </tr>
                 ))}
               </tbody>
