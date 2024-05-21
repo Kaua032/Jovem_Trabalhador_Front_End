@@ -9,7 +9,60 @@ import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 
 export default function Home() {
   function registerStudent() {
-    console.log("Register Student");
+    const student_name = document.getElementById("name").value;
+    const student_phone = document.getElementById("phone").value;
+    const student_responsible = document.getElementById("responsible").value;
+    const student_born = document.getElementById("born_date").value;
+
+    const name_city_college = document.getElementById("college").value;
+    const college_parts = name_city_college
+      .split("|")
+      .map((part) => part.trim());
+    const college_name = college_parts[0];
+    const college_city = college_parts[1];
+
+    const grade_time_party = document.getElementById("party").value;
+    const party_parts = grade_time_party.split("|").map((part) => part.trim());
+    const party_grade = party_parts[0];
+    const party_time = party_parts[1];
+
+    const courses = document.getElementsByName("courses");
+    const student_courses = [];
+    for (let i = 0; i < courses.length; i++) {
+      if (courses[i].checked) {
+        student_courses.push(courses[i].value);
+      }
+    }
+
+    const actualDate = new Date();
+    const formatedDate = actualDate.toISOString().split("T")[0];
+
+    const student = {
+      name: student_name.toLowerCase(),
+      phone: student_phone,
+      responsible_name: student_responsible.toLowerCase(),
+      born_date: student_born,
+      registration: formatedDate,
+      name_college: college_name.toLowerCase(),
+      city_college: college_city.toLowerCase(),
+      time_party: party_time.toLowerCase(),
+      grade_party: party_grade.toLowerCase(),
+      courses: student_courses,
+    };
+
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    students.push(student);
+    localStorage.setItem("students", JSON.stringify(students));
+
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("responsible").value = "";
+    document.getElementById("born_date").value = "";
+    document.getElementById("college").value = "Selecione";
+    document.getElementById("party").value = "Selecione";
+    for (let i = 0; i < courses.length; i++) {
+      courses[i].checked = false;
+    }
   }
   return (
     <MainHome>

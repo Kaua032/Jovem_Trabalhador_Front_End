@@ -94,7 +94,7 @@ export default function Header() {
     if (Cookies.get("token")) {
       getUser();
     }
-  });
+  }, []);
 
   return (
     <HeaderDiv>

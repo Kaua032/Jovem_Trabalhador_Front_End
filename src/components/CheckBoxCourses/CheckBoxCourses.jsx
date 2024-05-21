@@ -31,13 +31,13 @@ export default function CheckBoxCourses({ width, name }) {
       <div id="AllCourses">
         {coursesRemote.map((course) => (
           <div key={course.name}>
-            <input type="checkbox" name={name} />
+            <input value={course.name} type="checkbox" name={name} />
             <label htmlFor="">{course.name}</label>
           </div>
         ))}
         {coursesLocal.map((course) => (
           <div key={course.name}>
-            <input type="checkbox" name={name} />
+            <input value={course.name} type="checkbox" name={name} />
             <label htmlFor="">{course.name}</label>
           </div>
         ))}
