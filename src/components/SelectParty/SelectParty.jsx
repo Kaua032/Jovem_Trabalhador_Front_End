@@ -8,7 +8,7 @@ export function SelectParty({ width, id }) {
   const [partysLocal, setPartysLocal] = useState([]);
 
   async function getRemotePartys() {
-    if (!Cookies.get("token")) {
+    if (Cookies.get("token")) {
       const response = await getAllPartys();
 
       const currentParties = response.data.parties;

@@ -8,7 +8,7 @@ export function SelectCollege({ width, id }) {
   const [collegesLocal, setCollegesLocal] = useState([]);
 
   async function getRemoteColleges() {
-    if (!Cookies.get("token")) {
+    if (Cookies.get("token")) {
       const response = await getAllColleges();
 
       const currentColleges = response.data.colleges;
@@ -22,7 +22,7 @@ export function SelectCollege({ width, id }) {
 
     setCollegesLocal(JSON.parse(localStorage.getItem("colleges")));
 
-    return;
+    return
   }
 
   useEffect(() => {

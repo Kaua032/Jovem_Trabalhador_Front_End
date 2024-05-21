@@ -8,7 +8,7 @@ export default function CheckBoxCourses({ width, name }) {
   const [coursesLocal, setCoursesLocal] = useState([]);
 
   async function getRemoteCourses() {
-    if (!Cookies.get("token")) {
+    if (Cookies.get("token")) {
       const response = await getAllCourses();
 
       const currentCourses = response.data.courses;
