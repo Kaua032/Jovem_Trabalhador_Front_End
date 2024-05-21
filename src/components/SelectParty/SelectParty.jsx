@@ -30,12 +30,12 @@ export function SelectParty({ width, id }) {
       <p>Turma:</p>
       <select name="" id={id}>
         <option value="">Selecione</option>
-        {partysRemote.map((party) => (
+        {partysRemote && partysRemote.map((party) => (
           <option
             key={`${party.grade}-${party.time}`}
           >{`${party.grade} | ${party.time}`}</option>
         ))}
-        {partysLocal.map((party) => (
+        {partysLocal && partysLocal.map((party) => (
           <option
             key={`${party.grade}-${party.time}`}
           >{`${party.grade} | ${party.time}`}</option>

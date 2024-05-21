@@ -33,16 +33,24 @@ export function SelectCollege({ width, id }) {
       <p>Instituição:</p>
       <select name="" id={id}>
         <option value="">Selecione</option>
-        {collegesRemote.map((college) => (
-          <option
-            key={`${college.name}-${college.city}-remote`}
-          >{`${college.name} | ${college.city}`}</option>
-        ))}
-        {collegesLocal.map((college) => (
-          <option
-            key={`${college.name}-${college.city}-local`}
-          >{`${college.name} | ${college.city}`}</option>
-        ))}
+        {collegesRemote ? (
+          collegesRemote.map((college) => (
+            <option
+              key={`${college.name}-${college.city}-remote`}
+            >{`${college.name} | ${college.city}`}</option>
+          ))
+        ) : (
+          <></>
+        )}
+        {collegesLocal ? (
+          collegesLocal.map((college) => (
+            <option
+              key={`${college.name}-${college.city}-local`}
+            >{`${college.name} | ${college.city}`}</option>
+          ))
+        ) : (
+          <></>
+        )}
       </select>
     </SelectArea>
   );

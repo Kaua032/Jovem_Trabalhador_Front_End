@@ -29,13 +29,13 @@ export default function CheckBoxCourses({ width, name }) {
     <BoxCoursesArea width={width}>
       <p>Cursos:</p>
       <div id="AllCourses">
-        {coursesRemote.map((course) => (
+        {coursesRemote && coursesRemote.map((course) => (
           <div key={course.name}>
             <input value={course.name} type="checkbox" name={name} />
             <label htmlFor="">{course.name}</label>
           </div>
         ))}
-        {coursesLocal.map((course) => (
+        {coursesLocal && coursesLocal.map((course) => (
           <div key={course.name}>
             <input value={course.name} type="checkbox" name={name} />
             <label htmlFor="">{course.name}</label>
