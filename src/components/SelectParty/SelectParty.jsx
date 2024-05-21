@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { SelectPartyStyle } from "./SelectPartyStyled";
 import { getAllPartys } from "../../services/partyService";
+import Cookies from "js-cookie";
 
 export function SelectParty({ width, id }) {
   const [partysRemote, setPartysRemote] = useState([]);
   const [partysLocal, setPartysLocal] = useState([]);
 
   async function getRemotePartys() {
-    const response = await getAllPartys();
+    if (!Cookies.get("token")) {
+      const response = await getAllPartys();
 
-    const currentParties = response.data.parties;
-    localStorage.setItem("partiesCopyRemote", JSON.stringify(currentParties));
+      const currentParties = response.data.parties;
+      localStorage.setItem("partiesCopyRemote", JSON.stringify(currentParties));
+    }
     setPartysRemote(JSON.parse(localStorage.getItem("partiesCopyRemote")));
 
     setPartysLocal(JSON.parse(localStorage.getItem("partys")));

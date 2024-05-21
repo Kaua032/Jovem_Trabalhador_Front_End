@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import { getAllColleges } from "../../services/collegeService";
 import { SelectArea } from "./SelectCollegeStyled";
+import Cookies from "js-cookie";
 
 export function SelectCollege({ width, id }) {
   const [collegesRemote, setCollegesRemote] = useState([]);
   const [collegesLocal, setCollegesLocal] = useState([]);
 
   async function getRemoteColleges() {
-    const response = await getAllColleges();
+    if (!Cookies.get("token")) {
+      const response = await getAllColleges();
 
-    const currentColleges = response.data.colleges;
-    localStorage.setItem("collegesCopyRemote", JSON.stringify(currentColleges));
+      const currentColleges = response.data.colleges;
+      localStorage.setItem(
+        "collegesCopyRemote",
+        JSON.stringify(currentColleges)
+      );
+    }
+
     setCollegesRemote(JSON.parse(localStorage.getItem("collegesCopyRemote")));
 
     setCollegesLocal(JSON.parse(localStorage.getItem("colleges")));
