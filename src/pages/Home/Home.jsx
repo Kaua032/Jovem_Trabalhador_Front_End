@@ -6,6 +6,7 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 import { SelectParty } from "../../components/SelectParty/SelectParty";
 import SelectTime from "../../components/SelectTime/SelectTime";
+import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 
 export default function Home() {
   return (
@@ -45,6 +46,7 @@ export default function Home() {
           <div id="formStudent2">
             <SelectParty width="300px" />
             <SelectTime width="300px" />
+            <CheckBoxCourses width="300px" name="courses" />
             <SubmitButton type="submit" title="Adicionar" width="300px" />
           </div>
         </div>
