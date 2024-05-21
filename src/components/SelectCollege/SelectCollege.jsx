@@ -27,7 +27,7 @@ export function SelectCollege({ width, id }) {
 
   useEffect(() => {
     getRemoteColleges();
-  });
+  }, []);
   return (
     <SelectArea width={width}>
       <p>Instituição:</p>

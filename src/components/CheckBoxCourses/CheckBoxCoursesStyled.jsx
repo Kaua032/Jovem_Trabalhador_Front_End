@@ -10,7 +10,7 @@ export const BoxCoursesArea = styled.div`
     flex-direction: column;
     gap: 1px;
     width: ${(props) => props.width};
-    height: 150px;
+    height: 239px;
     overflow-y: auto;
   }
   p {

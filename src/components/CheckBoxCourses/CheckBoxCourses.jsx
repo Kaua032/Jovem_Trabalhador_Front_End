@@ -24,7 +24,7 @@ export default function CheckBoxCourses({ width, name }) {
 
   useEffect(() => {
     getRemoteCourses();
-  });
+  }, []);
   return (
     <BoxCoursesArea width={width}>
       <p>Cursos:</p>

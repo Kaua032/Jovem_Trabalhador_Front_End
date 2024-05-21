@@ -23,7 +23,7 @@ export function SelectParty({ width, id }) {
 
   useEffect(() => {
     getRemotePartys();
-  });
+  }, []);
 
   return (
     <SelectPartyStyle width={width}>
