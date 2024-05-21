@@ -57,10 +57,6 @@ export const SectionCollege = styled.section`
   #local tr td, #local tr th {
     padding: 10px 0px;
   }
-  #remota tr {
-    display: flex;
-    justify-content: space-between;
-  }
   table tbody tr {
     border-top: 1px solid #bababa;
   }
