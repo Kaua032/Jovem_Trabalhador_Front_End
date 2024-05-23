@@ -8,6 +8,7 @@ import Courses from "./pages/Courses/Courses.jsx";
 import Party from "./pages/Partys/Party.jsx";
 import { ListGroupItem } from "react-bootstrap";
 import ListRemoteStudent from "./pages/ListRemoteStudents/ListRemoteStudents.jsx";
+import ListLocalStudents from "./pages/ListLocalStudents/ListLocalStudents.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/remoteStudents",
     element: <ListRemoteStudent />,
+  },
+  {
+    path: "/localStudents",
+    element: <ListLocalStudents />,
   },
 ]);
 
