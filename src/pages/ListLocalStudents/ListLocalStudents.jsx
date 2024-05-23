@@ -60,6 +60,7 @@ export default function ListLocalStudents() {
     } else if (response.status == 201) {
       alert(response.data.message);
       setInfoLocalStudents([]);
+      localStorage.setItem("students", []);
     }
   }
 
