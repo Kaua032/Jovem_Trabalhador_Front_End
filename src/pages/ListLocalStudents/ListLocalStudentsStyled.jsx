@@ -14,7 +14,6 @@ export const ListAreaLocalStudents = styled.div`
 
   #listArea {
     width: 720px;
-    min-height: 571px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,7 +23,7 @@ export const ListAreaLocalStudents = styled.div`
     border-radius: 15px;
     border: 1px solid #bababa;
   }
-  div h2 {
+  #listArea h2 {
     font-size: 20px;
     font-weight: bold;
     color: #454545;

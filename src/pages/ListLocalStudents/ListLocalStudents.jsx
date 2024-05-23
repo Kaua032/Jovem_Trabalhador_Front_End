@@ -5,6 +5,9 @@ import {
   ListAreaLocalStudents,
   MainLocalStudents,
 } from "./ListLocalStudentsStyled";
+import SubmitButton from "../../components/SubmitButton/SubmitButton";
+import Cookies from "js-cookie";
+import { postAllStudents } from "../../services/student";
 
 export default function ListLocalStudents() {
   const [infoLocalStudents, setInfoLocalStudents] = useState([]);
@@ -33,6 +36,31 @@ export default function ListLocalStudents() {
       age--;
     }
     return age;
+  }
+
+  async function registerStudents() {
+    const currentStudents = localStorage.getItem("students")
+      ? JSON.parse(localStorage.getItem("students"))
+      : [];
+
+    if (currentStudents.length == 0) {
+      return alert(
+        "Você precisa registrar algum aluno na rede Local antes de enviar para a Rede Remota."
+      );
+    } else if (!Cookies.get("token")) {
+      return alert(
+        "Você precisa estar logado para registrar algum aluno na rede Remota"
+      );
+    }
+
+    const response = await postAllStudents(infoLocalStudents);
+
+    if (response.status == 200) {
+      alert(response.data.message);
+    } else if (response.status == 201) {
+      alert(response.data.message);
+      setInfoLocalStudents([]);
+    }
   }
 
   useEffect(() => {
@@ -79,6 +107,12 @@ export default function ListLocalStudents() {
             </tbody>
           </table>
         </div>
+        <SubmitButton
+          onClick={registerStudents}
+          type="submit"
+          title="Adicionar Lista de Alunos Ao Banco"
+          width="70%"
+        />
       </ListAreaLocalStudents>
     </MainLocalStudents>
   );
