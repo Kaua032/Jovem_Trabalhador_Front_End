@@ -68,8 +68,13 @@ export default function ListRemoteStudent() {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
+  // async function deleteStudent(index){
+
+  // }
+
   useEffect(() => {
     findAllStudents(page);
+    console.log(infoAllStudents);
   }, [page]);
   return (
     <MainRemoteStudents>

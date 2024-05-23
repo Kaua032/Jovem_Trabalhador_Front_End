@@ -50,7 +50,9 @@ export default function Home() {
       courses: student_courses,
     };
 
-    let students = JSON.parse(localStorage.getItem("students")) || [];
+    let students = localStorage.getItem("students")
+      ? JSON.parse(localStorage.getItem("students"))
+      : [];
     students.push(student);
     localStorage.setItem("students", JSON.stringify(students));
 
