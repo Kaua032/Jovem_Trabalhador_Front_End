@@ -24,3 +24,13 @@ export function postAllStudents(data) {
 
   return response;
 }
+
+export function delStudent(data) {
+  const response = axios.delete(`${baseURL}/student/delete/${data}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}

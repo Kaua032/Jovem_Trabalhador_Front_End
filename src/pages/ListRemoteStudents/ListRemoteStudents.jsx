@@ -6,6 +6,7 @@ import {
   MainRemoteStudents,
 } from "./ListRemoteStudentsStyled";
 import {
+  delStudent,
   getAllStudentsByPage,
   getAllStudentsBySearch,
 } from "../../services/student";
@@ -68,13 +69,15 @@ export default function ListRemoteStudent() {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
-  // async function deleteStudent(index){
-
-  // }
+  async function deleteStudent(index) {
+    const studentId = infoAllStudents[index]._id;
+    const response = await delStudent(studentId);
+    alert(response.data.message);
+    window.location.reload();
+  }
 
   useEffect(() => {
     findAllStudents(page);
-    console.log(infoAllStudents);
   }, [page]);
   return (
     <MainRemoteStudents>
@@ -116,7 +119,10 @@ export default function ListRemoteStudent() {
                       <button className="editButton"></button>
                     </td>
                     <td>
-                      <button className="deleteButton"></button>
+                      <button
+                        onClick={() => deleteStudent(index)}
+                        className="deleteButton"
+                      ></button>
                     </td>
                   </tr>
                 ))
