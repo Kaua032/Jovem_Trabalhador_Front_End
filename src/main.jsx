@@ -9,6 +9,7 @@ import Party from "./pages/Partys/Party.jsx";
 import { ListGroupItem } from "react-bootstrap";
 import ListRemoteStudent from "./pages/ListRemoteStudents/ListRemoteStudents.jsx";
 import ListLocalStudents from "./pages/ListLocalStudents/ListLocalStudents.jsx";
+import GenerateStudentList from "./pages/GenerateStudentList/GenerateStudentList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     path: "/localStudents",
     element: <ListLocalStudents />,
   },
+  {
+    path: "/generateList",
+    element: <GenerateStudentList />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
