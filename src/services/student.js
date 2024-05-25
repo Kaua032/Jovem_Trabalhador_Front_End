@@ -34,3 +34,13 @@ export function delStudent(data) {
 
   return response;
 }
+
+export function generateStudents(data) {
+  const response = axios.get(`${baseURL}/student/generate`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}
