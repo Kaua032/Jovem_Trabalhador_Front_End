@@ -106,7 +106,7 @@ export default function Home() {
           </div>
           <div id="formStudent2">
             <SelectParty width="300px" id="party" />
-            <CheckBoxCourses width="300px" name="courses" />
+            <CheckBoxCourses height="239px" width="300px" name="courses" />
             <SubmitButton
               onClick={registerStudent}
               type="submit"
