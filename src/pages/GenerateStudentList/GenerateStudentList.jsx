@@ -10,6 +10,7 @@ import { SelectParty } from "../../components/SelectParty/SelectParty";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import SelectTime from "../../components/SelectTime/SelectTime";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
+import { SelectRegistration } from "../../components/SelectRegistration/SelectRegistration";
 
 export default function GenerateStudentList() {
   return (
@@ -27,6 +28,7 @@ export default function GenerateStudentList() {
             </div>
             <div className="inputs">
               <SelectTime width="300px" id="time" />
+              <SelectRegistration />
               <CheckBoxCourses height="123px" width="300px" />
             </div>
           </div>
