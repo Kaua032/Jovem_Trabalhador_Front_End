@@ -29,7 +29,7 @@ export default function GenerateStudentList() {
             <div className="inputs">
               <SelectTime width="300px" id="time" />
               <SelectRegistration />
-              <CheckBoxCourses height="123px" width="300px" />
+              <CheckBoxCourses height="50px" width="300px" />
             </div>
           </div>
           <SubmitButton width="300px" title="Gerar Lista" />
