@@ -1,6 +1,5 @@
 import Header from "../../components/Header/Header";
 import Navbar from "../../components/Navbar/Navbar";
-import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 import SelectCity from "../../components/SelectCity/SelectCity";
 import {
   MainGenerateStudent,
@@ -13,17 +12,14 @@ import { SelectRegistration } from "../../components/SelectRegistration/SelectRe
 import { useState } from "react";
 import SelectJustParty from "../../components/SelectJustParty/SelectJustParty";
 import { generateStudents } from "../../services/student";
+import { SelectJustCollege } from "../../components/SelectJustCollege/SelectJustCollege";
 
 export default function GenerateStudentList() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
 
   async function GenerateStudents() {
-    const name_city_college = document.getElementById("college").value;
-    const college_parts = name_city_college
-      .split("|")
-      .map((part) => part.trim());
-    const name_college = college_parts[0];
-    const city_college = college_parts[1];
+    const name_college = document.getElementById("college").value;
+    const name_city = document.getElementById("city").value;
     const time_party = document.getElementById("time").value;
     const grade_party = document.getElementById("party").value;
     const student_registration = document.getElementById("registration").value;
@@ -41,8 +37,8 @@ export default function GenerateStudentList() {
     if (name_college) {
       filterCriteria.name_college = name_college.toLowerCase();
     }
-    if (city_college) {
-      filterCriteria.city_college = city_college.toLowerCase();
+    if (name_city) {
+      filterCriteria.city_college = name_city.toLowerCase();
     }
     if (time_party) {
       filterCriteria.time_party = time_party.toLowerCase();
@@ -86,7 +82,7 @@ export default function GenerateStudentList() {
           <h2>Gerar Lista de Alunos</h2>
           <div id="areaInputs">
             <div className="inputs">
-              <SelectCollege width="300px" id="college" />
+              <SelectJustCollege width="300px" id="college" />
               <SelectCity width="300px" id="city" />
               <SelectJustParty width="300px" id="party" />
             </div>
@@ -129,10 +125,7 @@ export default function GenerateStudentList() {
                 <tr id="noStudents">
                   <td colSpan="5">
                     <img src="./alerta.png" alt="" />
-                    <p>
-                      Você precisa está logado para ver os alunos da Rede
-                      remota.
-                    </p>
+                    <p>Nenhum aluno encontrado.</p>
                   </td>
                 </tr>
               )}
