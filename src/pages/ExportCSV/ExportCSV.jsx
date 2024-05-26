@@ -8,8 +8,67 @@ import SelectTime from "../../components/SelectTime/SelectTime";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 import SelectRegistration from "../../components/SelectRegistration/SelectRegistration";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
+import { exportStudentCSV } from "../../services/student";
 
 export default function ExportCSV() {
+  async function generateExport() {
+    const name_college = document.getElementById("college").value;
+    const name_city = document.getElementById("city").value;
+    const time_party = document.getElementById("time").value;
+    const grade_party = document.getElementById("party").value;
+    const student_registration = document.getElementById("registration").value;
+
+    const courses = document.getElementsByName("courses");
+    const student_courses = [];
+    for (let i = 0; i < courses.length; i++) {
+      if (courses[i].checked) {
+        student_courses.push(courses[i].value);
+      }
+    }
+
+    const filterCriteria = {};
+
+    if (name_college) {
+      filterCriteria.name_college = name_college.toLowerCase();
+    }
+    if (name_city) {
+      filterCriteria.city_college = name_city.toLowerCase();
+    }
+    if (time_party) {
+      filterCriteria.time_party = time_party.toLowerCase();
+    }
+    if (grade_party) {
+      filterCriteria.grade_party = grade_party.toLowerCase();
+    }
+    if (student_registration) {
+      filterCriteria.student_registration = student_registration.toLowerCase();
+    }
+    if (student_courses && student_courses.length > 0) {
+      filterCriteria.courses = student_courses;
+    }
+
+    if (Object.keys(filterCriteria).length == 0) {
+      return alert("Você precisa preencher");
+    }
+
+    try {
+      const response = await exportStudentCSV(filterCriteria);
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "students.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      console.log("Arquivo CSV exportado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao exportar CSV:", error);
+      alert("Erro ao exportar CSV. Verifique se você está autorizado.");
+    }
+  }
+
   return (
     <MainExportCSV>
       <Navbar p8={1} />
@@ -29,7 +88,11 @@ export default function ExportCSV() {
               <CheckBoxCourses name="courses" width="300px" height="50px" />
             </div>
           </div>
-          <SubmitButton width="300px" title="Exportar" />
+          <SubmitButton
+            onClick={generateExport}
+            width="300px"
+            title="Exportar"
+          />
         </div>
       </SectionExportCSV>
     </MainExportCSV>

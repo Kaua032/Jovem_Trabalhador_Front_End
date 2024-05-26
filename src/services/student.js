@@ -44,3 +44,14 @@ export function generateStudents(data) {
 
   return response;
 }
+
+export function exportStudentCSV(data) {
+  const response = axios.post(`${baseURL}/student/export`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+    responseType: "blob",
+  });
+
+  return response;
+}
