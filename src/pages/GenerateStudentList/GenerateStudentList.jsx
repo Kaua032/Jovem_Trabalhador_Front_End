@@ -8,11 +8,11 @@ import {
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import SelectTime from "../../components/SelectTime/SelectTime";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
-import { SelectRegistration } from "../../components/SelectRegistration/SelectRegistration";
+import SelectRegistration from "../../components/SelectRegistration/SelectRegistration";
 import { useState } from "react";
 import SelectJustParty from "../../components/SelectJustParty/SelectJustParty";
 import { generateStudents } from "../../services/student";
-import { SelectJustCollege } from "../../components/SelectJustCollege/SelectJustCollege";
+import SelectJustCollege from "../../components/SelectJustCollege/SelectJustCollege";
 
 export default function GenerateStudentList() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
@@ -89,7 +89,7 @@ export default function GenerateStudentList() {
             <div className="inputs">
               <SelectTime width="300px" id="time" />
               <SelectRegistration width="300px" id="registration" />
-              <CheckBoxCourses height="50px" width="300px" />
+              <CheckBoxCourses name="courses" height="50px" width="300px" />
             </div>
           </div>
           <SubmitButton

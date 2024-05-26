@@ -3,7 +3,7 @@ import { SelectArea } from "./SelectJustCollegeStyled";
 import Cookies from "js-cookie";
 import { getAllColleges } from "../../services/collegeService";
 
-export function SelectJustCollege({ width, id }) {
+export default function SelectJustCollege({ width, id }) {
   const [collegesRemote, setCollegesRemote] = useState([]);
 
   async function getRemoteColleges() {

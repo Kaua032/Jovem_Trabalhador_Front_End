@@ -1,6 +1,6 @@
 import { SelectRegistrationStyle } from "./SelectRegistrationStyled";
 
-export function SelectRegistration({ width, id }) {
+export default function SelectRegistration({ width, id }) {
   return (
     <SelectRegistrationStyle width={width}>
       <p>Registro:</p>
