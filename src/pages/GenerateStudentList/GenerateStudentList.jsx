@@ -6,13 +6,13 @@ import {
   MainGenerateStudent,
   SectionGenerateStudent,
 } from "./GenerateStudentListStyled";
-import { SelectParty } from "../../components/SelectParty/SelectParty";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import SelectTime from "../../components/SelectTime/SelectTime";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 import { SelectRegistration } from "../../components/SelectRegistration/SelectRegistration";
 import { useState } from "react";
 import SelectJustParty from "../../components/SelectJustParty/SelectJustParty";
+import { generateStudents } from "../../services/student";
 
 export default function GenerateStudentList() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
@@ -57,7 +57,24 @@ export default function GenerateStudentList() {
       filterCriteria.courses = student_courses;
     }
 
-    return console.log(filterCriteria);
+    if (Object.keys(filterCriteria).length == 0) {
+      return alert("Você precisa preencher");
+    }
+
+    const response = await generateStudents(filterCriteria);
+
+    if (response.status == 200) {
+      return setInfoAllStudents([]);
+    } else if (response.status == 201) {
+      return setInfoAllStudents(response.data);
+    }
+  }
+
+  function calculateAge(bornDate) {
+    const birthDate = new Date(bornDate);
+    const difference = Date.now() - birthDate.getTime();
+    const ageDate = new Date(difference);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
   return (
@@ -85,8 +102,42 @@ export default function GenerateStudentList() {
             title="Gerar Lista"
           />
         </div>
-        <div>
-          <table></table>
+        <div id="listArea">
+          <h2>Lista de Estudantes</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Nº</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Responsável</th>
+                <th>Idade</th>
+              </tr>
+            </thead>
+            <tbody>
+              {infoAllStudents.length > 0 ? (
+                infoAllStudents.map((student, index) => (
+                  <tr key={student._id}>
+                    <td>{index + 1}º</td>
+                    <td>{student.name}</td>
+                    <td>{student.phone}</td>
+                    <td>{student.responsible_name}</td>
+                    <td>{calculateAge(student.born_date)} anos</td>
+                  </tr>
+                ))
+              ) : (
+                <tr id="noStudents">
+                  <td colSpan="5">
+                    <img src="./alerta.png" alt="" />
+                    <p>
+                      Você precisa está logado para ver os alunos da Rede
+                      remota.
+                    </p>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </SectionGenerateStudent>
     </MainGenerateStudent>

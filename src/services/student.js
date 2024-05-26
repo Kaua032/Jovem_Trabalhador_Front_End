@@ -36,7 +36,7 @@ export function delStudent(data) {
 }
 
 export function generateStudents(data) {
-  const response = axios.get(`${baseURL}/student/generate`, data, {
+  const response = axios.post(`${baseURL}/student/generate`, data, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     },
