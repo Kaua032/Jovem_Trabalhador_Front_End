@@ -10,6 +10,7 @@ import { ListGroupItem } from "react-bootstrap";
 import ListRemoteStudent from "./pages/ListRemoteStudents/ListRemoteStudents.jsx";
 import ListLocalStudents from "./pages/ListLocalStudents/ListLocalStudents.jsx";
 import GenerateStudentList from "./pages/GenerateStudentList/GenerateStudentList.jsx";
+import ExportCSV from "./pages/ExportCSV/ExportCSV.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,8 +39,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/generateList",
-    element: <GenerateStudentList />
-  }
+    element: <GenerateStudentList />,
+  },
+  {
+    path: "/exportCSV",
+    element: <ExportCSV />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

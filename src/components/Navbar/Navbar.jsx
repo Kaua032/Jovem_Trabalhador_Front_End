@@ -15,7 +15,7 @@ export default function Navbar({ ...props }) {
         <NavbarComponent href="/courses" type={props.p5} name="Cursos" />
         <NavbarComponent href="/party" type={props.p6} name="Turmas" />
         <NavbarComponent href="/generateList" type={props.p7} name="Gerar Lista de Alunos" />
-        <NavbarComponent href="/" type={props.p8} name="Exportar CSV" />
+        <NavbarComponent href="/exportCSV" type={props.p8} name="Exportar CSV" />
       </div>
     </BackgroundNav>
   );
