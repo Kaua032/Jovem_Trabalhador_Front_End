@@ -86,6 +86,11 @@ export default function ListRemoteStudent() {
     window.location.reload();
   }
 
+  async function findAndUpdate(index) {
+    handleShow();
+    document.getElementById("name").value = infoAllStudents[index].name
+  }
+
   useEffect(() => {
     findAllStudents(page);
   }, [page]);
@@ -127,7 +132,7 @@ export default function ListRemoteStudent() {
                     <td>{calculateAge(student.born_date)} anos</td>
                     <td>
                       <button
-                        onClick={handleShow}
+                        onClick={() => findAndUpdate(index)}
                         className="editButton"
                       ></button>
                     </td>
