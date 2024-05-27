@@ -11,10 +11,20 @@ import {
   getAllStudentsBySearch,
 } from "../../services/student";
 import Cookies from "js-cookie";
+import { Modal } from "react-bootstrap";
+import InputComponent from "../../components/Input/InputComponent";
+import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
+import { SelectParty } from "../../components/SelectParty/SelectParty";
+import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
+import SubmitButton from "../../components/SubmitButton/SubmitButton";
 
 export default function ListRemoteStudent() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
   const [page, setPage] = useState(1);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   async function SearchStudent() {
     if (Cookies.get("token")) {
@@ -116,7 +126,10 @@ export default function ListRemoteStudent() {
                     <td>{student.responsible_name}</td>
                     <td>{calculateAge(student.born_date)} anos</td>
                     <td>
-                      <button className="editButton"></button>
+                      <button
+                        onClick={handleShow}
+                        className="editButton"
+                      ></button>
                     </td>
                     <td>
                       <button
@@ -150,6 +163,49 @@ export default function ListRemoteStudent() {
           </button>
         </div>
       </ListAreaRemoteStudents>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title id="modalTitle">Atualizar Estudante</Modal.Title>
+        </Modal.Header>
+        <div id="flex">
+          <div id="formStudent1">
+            <InputComponent
+              name="name"
+              type="text"
+              title="Nome do Estudante:"
+              width="300px"
+              id="name"
+            />
+            <InputComponent
+              name="phone"
+              type="text"
+              title="Telefone:"
+              width="300px"
+              id="phone"
+            />
+            <InputComponent
+              name="responsible_name"
+              type="text"
+              title="Nome do Responsável:"
+              width="300px"
+              id="responsible"
+            />
+            <InputComponent
+              name="born_date"
+              type="date"
+              title="Data de nascimento:"
+              width="300px"
+              id="born_date"
+            />
+            <SelectCollege width="300px" id="college" />
+          </div>
+          <div id="formStudent2">
+            <SelectParty width="300px" id="party" />
+            <CheckBoxCourses height="150px" width="300px" name="courses" />
+            <SubmitButton type="submit" title="Adicionar" width="300px" />
+          </div>
+        </div>
+      </Modal>
     </MainRemoteStudents>
   );
 }

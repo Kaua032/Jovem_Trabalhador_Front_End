@@ -4,6 +4,10 @@ export const MainRemoteStudents = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  #formStudent {
+    display: flex;
+  }
 `;
 
 export const ListAreaRemoteStudents = styled.div`
