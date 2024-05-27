@@ -22,7 +22,7 @@ export function SelectCollege({ width, id }) {
 
     setCollegesLocal(JSON.parse(localStorage.getItem("colleges")));
 
-    return
+    return;
   }
 
   useEffect(() => {

@@ -22,6 +22,7 @@ export default function ListRemoteStudent() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
   const [page, setPage] = useState(1);
   const [show, setShow] = useState(false);
+  const [currentStudentId, setCurrentStudentId] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -86,9 +87,74 @@ export default function ListRemoteStudent() {
     window.location.reload();
   }
 
-  async function findAndUpdate(index) {
-    handleShow();
-    document.getElementById("name").value = infoAllStudents[index].name
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(date.getUTCDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  async function ShowStudent(index) {
+    const student = infoAllStudents[index];
+    await handleShow();
+    setCurrentStudentId(student._id);
+    document.getElementById("name").value = student.name;
+    document.getElementById("phone").value = student.phone;
+    document.getElementById("responsible").value = student.responsible_name;
+    student.born_date = await formatDate(student.born_date);
+    document.getElementById("born_date").value = student.born_date;
+  }
+
+  async function UpdateStudent() {
+    const studentId = currentStudentId;
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const responsible = document.getElementById("responsible").value;
+    const born_date = document.getElementById("born_date").value;
+
+    const name_city_college = document.getElementById("college").value;
+    let college_name;
+    let college_city;
+    if (name_city_college) {
+      const college_parts = name_city_college
+        .split("|")
+        .map((part) => part.trim());
+      college_name = college_parts[0];
+      college_city = college_parts[1];
+    }
+
+    const grade_time_party = document.getElementById("party").value;
+    let party_grade;
+    let party_time;
+    if (grade_time_party) {
+      const party_parts = grade_time_party
+        .split("|")
+        .map((part) => part.trim());
+      party_grade = party_parts[0];
+      party_time = party_parts[1];
+    }
+
+    const courses = document.getElementsByName("courses");
+    const student_courses = [];
+    for (let i = 0; i < courses.length; i++) {
+      if (courses[i].checked) {
+        student_courses.push(courses[i].value);
+      }
+    }
+    const student = {
+      _id: studentId,
+      name: name,
+      phone: phone,
+      responsible_name: responsible,
+      born_date: born_date,
+      name_college: college_name,
+      city_college: college_city,
+      time_party: party_time,
+      grade_party: party_grade,
+      courses: student_courses,
+    };
+
   }
 
   useEffect(() => {
@@ -132,7 +198,7 @@ export default function ListRemoteStudent() {
                     <td>{calculateAge(student.born_date)} anos</td>
                     <td>
                       <button
-                        onClick={() => findAndUpdate(index)}
+                        onClick={() => ShowStudent(index)}
                         className="editButton"
                       ></button>
                     </td>
@@ -174,6 +240,7 @@ export default function ListRemoteStudent() {
         </Modal.Header>
         <div id="flex">
           <div id="formStudent1">
+            <input id="studentID" type="hidden" value={currentStudentId} />
             <InputComponent
               name="name"
               type="text"
@@ -207,7 +274,12 @@ export default function ListRemoteStudent() {
           <div id="formStudent2">
             <SelectParty width="300px" id="party" />
             <CheckBoxCourses height="150px" width="300px" name="courses" />
-            <SubmitButton type="submit" title="Adicionar" width="300px" />
+            <SubmitButton
+              onClick={UpdateStudent}
+              type="submit"
+              title="Adicionar"
+              width="300px"
+            />
           </div>
         </div>
       </Modal>
