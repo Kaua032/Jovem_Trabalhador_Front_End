@@ -55,3 +55,13 @@ export function exportStudentCSV(data) {
 
   return response;
 }
+
+export function updateStudent(data) {
+  const response = axios.put(`${baseURL}/student/update`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}

@@ -9,6 +9,7 @@ import {
   delStudent,
   getAllStudentsByPage,
   getAllStudentsBySearch,
+  updateStudent,
 } from "../../services/student";
 import Cookies from "js-cookie";
 import { Modal } from "react-bootstrap";
@@ -155,6 +156,20 @@ export default function ListRemoteStudent() {
       courses: student_courses,
     };
 
+    const response = await updateStudent(student);
+
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("responsible").value = "";
+    document.getElementById("born_date").value = "";
+    document.getElementById("college").value = "Selecione";
+    document.getElementById("party").value = "Selecione";
+    for (let i = 0; i < courses.length; i++) {
+      courses[i].checked = false;
+    }
+
+    handleClose();
+    alert(response.data.message);
   }
 
   useEffect(() => {
