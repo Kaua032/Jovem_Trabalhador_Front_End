@@ -18,6 +18,7 @@ import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 import { SelectParty } from "../../components/SelectParty/SelectParty";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ListRemoteStudent() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
@@ -27,6 +28,18 @@ export default function ListRemoteStudent() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const ToastNotice = (message, type) =>
+    toast[type](`${message}`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   async function SearchStudent() {
     if (Cookies.get("token")) {
@@ -42,7 +55,10 @@ export default function ListRemoteStudent() {
       document.getElementById("left").style.display = "none";
       document.getElementById("page").style.display = "none";
     } else {
-      alert("Você precisa está logado para a pesquisa funcionar");
+      ToastNotice(
+        "Você precisa está logado para a pesquisa funcionar",
+        "error"
+      );
     }
   }
 
@@ -84,8 +100,8 @@ export default function ListRemoteStudent() {
   async function deleteStudent(index) {
     const studentId = infoAllStudents[index]._id;
     const response = await delStudent(studentId);
-    alert(response.data.message);
     window.location.reload();
+    ToastNotice(response.data.message, "info");
   }
 
   function formatDate(dateString) {
@@ -169,7 +185,8 @@ export default function ListRemoteStudent() {
     }
 
     handleClose();
-    alert(response.data.message);
+    window.location.reload();
+    ToastNotice(response.data.message, "success");
   }
 
   useEffect(() => {
@@ -298,6 +315,7 @@ export default function ListRemoteStudent() {
           </div>
         </div>
       </Modal>
+      <ToastContainer limit={2} />
     </MainRemoteStudents>
   );
 }

@@ -11,6 +11,7 @@ import ListRemoteStudent from "./pages/ListRemoteStudents/ListRemoteStudents.jsx
 import ListLocalStudents from "./pages/ListLocalStudents/ListLocalStudents.jsx";
 import GenerateStudentList from "./pages/GenerateStudentList/GenerateStudentList.jsx";
 import ExportCSV from "./pages/ExportCSV/ExportCSV.jsx";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {

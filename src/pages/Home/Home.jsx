@@ -7,13 +7,13 @@ import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 import { SelectParty } from "../../components/SelectParty/SelectParty";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Home() {
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
