@@ -8,9 +8,22 @@ import CollegeList from "../../components/CollegesList/CollegeList";
 import { registerColleges } from "../../services/collegeService";
 import Cookies from "js-cookie";
 import SelectCity from "../../components/SelectCity/SelectCity";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function College() {
   const [infoAllColleges, setInfoAllColleges] = useState([]);
+
+  const ToastNotice = (message, type) =>
+    toast[type](`${message}`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   function handleDeleteCollege(index) {
     const currentColleges = localStorage.getItem("colleges")
@@ -44,23 +57,26 @@ export default function College() {
 
   async function submitColleges() {
     if (!Cookies.get("token")) {
-      return alert("Você precisa estar logado para realizar essa ação");
+      return ToastNotice(
+        "Você precisa estar logado para realizar essa ação",
+        "error"
+      );
     }
     const colleges = localStorage.getItem("colleges")
       ? JSON.parse(localStorage.getItem("colleges"))
       : [];
 
     if (colleges.length == 0) {
-      return alert("Você não possui instituições cadastradas");
+      return ToastNotice("Você não possui instituições cadastradas", "error");
     }
     const response = await registerColleges(colleges);
     if (response.status == 200) {
-      alert(response.data.message);
+      ToastNotice(response.data.message, "error");
       return;
     } else if (response.status == 201) {
       localStorage.setItem("colleges", []);
       setInfoAllColleges([]);
-      alert(response.data.message);
+      ToastNotice(response.data.message, "success");
       window.location.reload();
     }
 
@@ -132,6 +148,7 @@ export default function College() {
         </div>
         <CollegeList />
       </SectionCollege>
+      <ToastContainer />
     </MainCollege>
   );
 }
