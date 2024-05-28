@@ -14,6 +14,8 @@ import { useForm } from "react-hook-form";
 export default function Header() {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
+  const [serverErrorSignin, setServerErrorSignin] = useState("");
+  const [serverErrorSigup, setServerErrorSigup] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,6 +39,7 @@ export default function Header() {
       handleClose();
       window.location.reload();
     } catch (error) {
+      setServerErrorSignin(error.response.data.message);
       console.log(error);
     }
   }
@@ -56,6 +59,7 @@ export default function Header() {
       handleClose();
       window.location.reload();
     } catch (error) {
+      setServerErrorSigup(error.response.data.message);
       console.log(error);
     }
   }
@@ -124,6 +128,7 @@ export default function Header() {
             {errorsSignin.email && (
               <ErrorSpan>{errorsSignin.email.message}</ErrorSpan>
             )}
+            {serverErrorSignin && <ErrorSpan>{serverErrorSignin}</ErrorSpan>}
             <InputComponent
               name="password"
               type="password"
@@ -134,6 +139,7 @@ export default function Header() {
             {errorsSignin.password && (
               <ErrorSpan>{errorsSignin.password.message}</ErrorSpan>
             )}
+            {serverErrorSignin && <ErrorSpan>{serverErrorSignin}</ErrorSpan>}
             <SubmitButton type="submit" title="Entrar" width="100%" />
           </form>
           <NavModalButton
@@ -160,6 +166,7 @@ export default function Header() {
             {errorsSignup.email && (
               <ErrorSpan>{errorsSignup.email.message}</ErrorSpan>
             )}
+            {serverErrorSigup && <ErrorSpan>{serverErrorSigup}</ErrorSpan>}
             <InputComponent
               name="password"
               type="password"
