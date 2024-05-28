@@ -8,9 +8,22 @@ import Cookies from "js-cookie";
 import { registerPartys } from "../../services/partyService";
 import PartyList from "../../components/PartysList/PartyList";
 import SelectTime from "../../components/SelectTime/SelectTime";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Party() {
   const [infoAllPartys, setInfoAllPartys] = useState([]);
+
+  const ToastNotice = (message, type) =>
+    toast[type](`${message}`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   function handleDeleteParty(index) {
     const currentPartys = localStorage.getItem("partys")
@@ -44,7 +57,10 @@ export default function Party() {
 
   async function submitPartys() {
     if (!Cookies.get("token")) {
-      return alert("Você precisa estar logado para realizar essa ação");
+      return ToastNotice(
+        "Você precisa estar logado para realizar essa ação",
+        "error"
+      );
     }
 
     const partys = localStorage.getItem("partys")
@@ -52,18 +68,18 @@ export default function Party() {
       : [];
 
     if (partys.length == 0) {
-      return alert("Você não possui turmas cadastradas");
+      return ToastNotice("Você não possui turmas cadastradas", "error");
     }
 
     const response = await registerPartys(partys);
 
     if (response.status == 200) {
-      alert(response.data.message);
+      ToastNotice(response.data.message, "error");
       return;
     } else if (response.status == 201) {
       localStorage.setItem("partys", []);
       setInfoAllPartys([]);
-      alert(response.data.message);
+      ToastNotice(response.data.message, "success");
       window.location.reload();
     }
 
@@ -135,6 +151,7 @@ export default function Party() {
         </div>
         <PartyList />
       </SectionParty>
+      <ToastContainer />
     </MainParty>
   );
 }

@@ -13,9 +13,22 @@ import { useState } from "react";
 import SelectJustParty from "../../components/SelectJustParty/SelectJustParty";
 import { generateStudents } from "../../services/student";
 import SelectJustCollege from "../../components/SelectJustCollege/SelectJustCollege";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function GenerateStudentList() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
+
+  const ToastNotice = (message, type) =>
+    toast[type](`${message}`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   async function GenerateStudents() {
     const name_college = document.getElementById("college").value;
@@ -54,7 +67,7 @@ export default function GenerateStudentList() {
     }
 
     if (Object.keys(filterCriteria).length == 0) {
-      return alert("Você precisa preencher");
+      return ToastNotice("Você precisa preencher pelo menos um campo", "error");
     }
 
     const response = await generateStudents(filterCriteria);
@@ -133,6 +146,7 @@ export default function GenerateStudentList() {
           </table>
         </div>
       </SectionGenerateStudent>
+      <ToastContainer />
     </MainGenerateStudent>
   );
 }

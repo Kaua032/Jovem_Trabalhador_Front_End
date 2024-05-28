@@ -9,8 +9,21 @@ import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 import SelectRegistration from "../../components/SelectRegistration/SelectRegistration";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { exportStudentCSV } from "../../services/student";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ExportCSV() {
+  const ToastNotice = (message, type) =>
+    toast[type](`${message}`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
   async function generateExport() {
     const name_college = document.getElementById("college").value;
     const name_city = document.getElementById("city").value;
@@ -48,7 +61,10 @@ export default function ExportCSV() {
     }
 
     if (Object.keys(filterCriteria).length == 0) {
-      return alert("Você precisa preencher");
+      return ToastNotice(
+        "Você precisa preencher pelo menos um campo.",
+        "error"
+      );
     }
 
     try {
@@ -65,7 +81,10 @@ export default function ExportCSV() {
       console.log("Arquivo CSV exportado com sucesso!");
     } catch (error) {
       console.error("Erro ao exportar CSV:", error);
-      alert("Erro ao exportar CSV. Verifique se você está autorizado.");
+      ToastNotice(
+        "Erro ao exportar CSV. Verifique se você está autorizado.",
+        "error"
+      );
     }
   }
 
@@ -95,6 +114,7 @@ export default function ExportCSV() {
           />
         </div>
       </SectionExportCSV>
+      <ToastContainer />
     </MainExportCSV>
   );
 }
