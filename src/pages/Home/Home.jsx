@@ -6,8 +6,22 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 import { SelectParty } from "../../components/SelectParty/SelectParty";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
+  const ToastNotice = (message, type) =>
+    toast[type](`${message}`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
   function registerStudent() {
     const student_name = document.getElementById("name").value;
     const student_phone = document.getElementById("phone").value;
@@ -24,7 +38,8 @@ export default function Home() {
       name_city_college === "Selecione" ||
       grade_time_party === "Selecione"
     ) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
+      console.log("chegou aqui");
+      ToastNotice("Por favor, preencha todos os campos obrigatórios.", "error");
       return;
     }
 
@@ -67,6 +82,7 @@ export default function Home() {
       : [];
     students.push(student);
     localStorage.setItem("students", JSON.stringify(students));
+    ToastNotice("Estudante registrado com sucesso.", "success");
 
     document.getElementById("name").value = "";
     document.getElementById("phone").value = "";
@@ -128,6 +144,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </MainHome>
   );
 }
