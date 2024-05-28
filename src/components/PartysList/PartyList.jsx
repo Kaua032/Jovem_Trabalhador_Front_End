@@ -25,29 +25,17 @@ export default function PartyList() {
         <table>
           <thead>
             <tr>
-              <td>
-                <p>Nº</p>
-              </td>
-              <td>
-                <p>Nome</p>
-              </td>
-              <td>
-                <p>Cidade</p>
-              </td>
+              <th>Nº</th>
+              <th>Nome</th>
+              <th>Cidade</th>
             </tr>
           </thead>
           <tbody>
             {allPartys.map((party, index) => (
               <tr key={index}>
-                <td>
-                  <p>{index + 1}º</p>
-                </td>
-                <td>
-                  <p>{party.grade}</p>
-                </td>
-                <td>
-                  <p>{party.time}</p>
-                </td>
+                <td>{index + 1}º</td>
+                <td>{party.grade}</td>
+                <td>{party.time}</td>
               </tr>
             ))}
           </tbody>

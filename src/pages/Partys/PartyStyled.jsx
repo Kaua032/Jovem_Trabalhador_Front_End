@@ -49,15 +49,9 @@ export const SectionParty = styled.section`
     font-weight: bold;
     color: #454545;
   }
-  #local tr {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 0px 10px;
-  }
-  #remota tr {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px 0px 20px;
+  #local tr th {
+    text-align: center;
+    padding: 10px 0px;
   }
   table tbody tr {
     border-top: 1px solid #bababa;

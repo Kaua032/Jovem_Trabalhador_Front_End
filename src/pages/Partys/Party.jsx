@@ -104,32 +104,18 @@ export default function Party() {
             <table id="local">
               <thead>
                 <tr>
-                  <th>
-                    <p>Nº</p>
-                  </th>
-                  <th>
-                    <p>Grade</p>
-                  </th>
-                  <th>
-                    <p>Horário</p>
-                  </th>
-                  <th>
-                    <p></p>
-                  </th>
+                  <th>Nº</th>
+                  <th>Grade</th>
+                  <th>Horário</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {infoAllPartys.map((party, index) => (
                   <tr key={index}>
-                    <th>
-                      <p>{index + 1}º</p>
-                    </th>
-                    <th>
-                      <p>{party.grade}</p>
-                    </th>
-                    <th>
-                      <p>{party.time}</p>
-                    </th>
+                    <th>{index + 1}º</th>
+                    <th>{party.grade}</th>
+                    <th>{party.time}</th>
                     <th>
                       <button
                         id={`delete-${index}`}
