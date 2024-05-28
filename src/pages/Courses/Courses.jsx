@@ -96,26 +96,16 @@ export default function Courses() {
             <table id="local">
               <thead>
                 <tr>
-                  <th>
-                    <p>Nº</p>
-                  </th>
-                  <th>
-                    <p>Nome</p>
-                  </th>
-                  <th>
-                    <p></p>
-                  </th>
+                  <th>Nº</th>
+                  <th>Nome</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {infoAllCourses.map((course, index) => (
                   <tr key={index}>
-                    <th>
-                      <p>{index + 1}º</p>
-                    </th>
-                    <th>
-                      <p>{course.name}</p>
-                    </th>
+                    <th>{index + 1}º</th>
+                    <th>{course.name}</th>
                     <th>
                       <button
                         id={`delete-${index}`}

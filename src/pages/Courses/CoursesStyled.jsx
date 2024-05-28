@@ -55,20 +55,13 @@ export const SectionCourse = styled.section`
     font-weight: 500;
     color: #525668;
   }
-  #local tr {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 0px 10px;
-  }
-  #remota tr {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px 0px 20px;
+  #local tr th {
+    padding: 10px 0px;
   }
   table tbody tr {
     border-top: 1px solid #bababa;
   }
-  #addCourseArea table th p {
+  #addCourseArea table th {
     text-align: center;
   }
   #addCourseArea table th button {

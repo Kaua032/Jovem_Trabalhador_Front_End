@@ -25,23 +25,15 @@ export default function CourseList() {
         <table>
           <thead>
             <tr>
-              <td>
-                <p>Nº</p>
-              </td>
-              <td>
-                <p>Nome</p>
-              </td>
+              <td>Nº</td>
+              <td>Nome</td>
             </tr>
           </thead>
           <tbody>
             {allCourses.map((course, index) => (
               <tr key={index}>
-                <td>
-                  <p>{index + 1}º</p>
-                </td>
-                <td>
-                  <p>{course.name}</p>
-                </td>
+                <td>{index + 1}º</td>
+                <td>{course.name}</td>
               </tr>
             ))}
           </tbody>
