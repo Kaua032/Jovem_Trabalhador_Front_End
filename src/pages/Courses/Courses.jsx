@@ -7,9 +7,22 @@ import { MainCourse, SectionCourse } from "./CoursesStyled";
 import Cookies from "js-cookie";
 import { registerCourses } from "../../services/courseService";
 import CourseList from "../../components/CoursesList/CoursesList";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Courses() {
   const [infoAllCourses, setInfoAllCourses] = useState([]);
+
+  const ToastNotice = (message, type) =>
+    toast[type](`${message}`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   function handleDeleteCourse(index) {
     const currentCourses = localStorage.getItem("courses")
@@ -41,23 +54,26 @@ export default function Courses() {
 
   async function submitCourses() {
     if (!Cookies.get("token")) {
-      return alert("Você precisa estar logado para realizar essa ação");
+      return ToastNotice(
+        "Você precisa estar logado para realizar essa ação",
+        "error"
+      );
     }
     const courses = localStorage.getItem("courses")
       ? JSON.parse(localStorage.getItem("courses"))
       : [];
 
     if (courses.length == 0) {
-      return alert("Você não possui cursos cadastrados");
+      return ToastNotice("Você não possui cursos cadastrados", "error");
     }
     const response = await registerCourses(courses);
     if (response.status == 200) {
-      alert(response.data.message);
+      ToastNotice(response.data.message, "error");
       return;
     } else if (response.status == 201) {
       localStorage.setItem("courses", []);
       setInfoAllCourses([]);
-      alert(response.data.message);
+      ToastNotice(response.data.message, "success");
       window.location.reload();
     }
   }
@@ -125,6 +141,7 @@ export default function Courses() {
         </div>
         <CourseList />
       </SectionCourse>
+      <ToastContainer />
     </MainCourse>
   );
 }
