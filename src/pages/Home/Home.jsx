@@ -13,15 +13,27 @@ export default function Home() {
     const student_phone = document.getElementById("phone").value;
     const student_responsible = document.getElementById("responsible").value;
     const student_born = document.getElementById("born_date").value;
-
     const name_city_college = document.getElementById("college").value;
+    const grade_time_party = document.getElementById("party").value;
+
+    if (
+      !student_name ||
+      !student_phone ||
+      !student_responsible ||
+      !student_born ||
+      name_city_college === "Selecione" ||
+      grade_time_party === "Selecione"
+    ) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+
     const college_parts = name_city_college
       .split("|")
       .map((part) => part.trim());
     const college_name = college_parts[0];
     const college_city = college_parts[1];
 
-    const grade_time_party = document.getElementById("party").value;
     const party_parts = grade_time_party.split("|").map((part) => part.trim());
     const party_grade = party_parts[0];
     const party_time = party_parts[1];
