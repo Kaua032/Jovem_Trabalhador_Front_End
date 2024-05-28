@@ -8,9 +8,22 @@ import {
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import Cookies from "js-cookie";
 import { postAllStudents } from "../../services/student";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function ListLocalStudents() {
   const [infoLocalStudents, setInfoLocalStudents] = useState([]);
+
+  const ToastNotice = (message, type) =>
+    toast[type](`${message}`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   function handleDeleteStudent(index) {
     const currentStudents = localStorage.getItem("students")
@@ -22,6 +35,7 @@ export default function ListLocalStudents() {
     localStorage.setItem("students", JSON.stringify(currentStudents));
 
     setInfoLocalStudents(currentStudents);
+    ToastNotice("Estudante deletado com sucesso", "info")
   }
 
   function calculateAge(birthDate) {
@@ -44,21 +58,20 @@ export default function ListLocalStudents() {
       : [];
 
     if (currentStudents.length == 0) {
-      return alert(
-        "Você precisa registrar algum aluno na rede Local antes de enviar para a Rede Remota."
-      );
+      return ToastNotice("Não há alunos registrados.", "error");
     } else if (!Cookies.get("token")) {
-      return alert(
-        "Você precisa estar logado para registrar algum aluno na rede Remota"
+      return ToastNotice(
+        "Faça login antes de enviar ao banco de dados",
+        "error"
       );
     }
 
     const response = await postAllStudents(infoLocalStudents);
 
     if (response.status == 200) {
-      alert(response.data.message);
+      ToastNotice(response.data.message, "error");
     } else if (response.status == 201) {
-      alert(response.data.message);
+      ToastNotice(response.data.message, "success");
       setInfoLocalStudents([]);
       localStorage.setItem("students", []);
     }
@@ -115,6 +128,7 @@ export default function ListLocalStudents() {
           width="70%"
         />
       </ListAreaLocalStudents>
+      <ToastContainer />
     </MainLocalStudents>
   );
 }
