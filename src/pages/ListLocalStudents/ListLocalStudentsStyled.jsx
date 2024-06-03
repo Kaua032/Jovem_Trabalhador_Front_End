@@ -23,10 +23,20 @@ export const ListAreaLocalStudents = styled.div`
     border-radius: 15px;
     border: 1px solid #bababa;
   }
-  #listArea h2 {
+  #listArea #header_list {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #listArea #header_list #space {
+    width: 170px;
+  }
+  #listArea #header_list h2 {
     font-size: 20px;
     font-weight: bold;
     color: #454545;
+    margin: 0;
   }
   table {
     width: 100%;

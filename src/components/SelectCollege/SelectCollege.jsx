@@ -3,7 +3,7 @@ import { getAllColleges } from "../../services/collegeService";
 import { SelectArea } from "./SelectCollegeStyled";
 import Cookies from "js-cookie";
 
-export function SelectCollege({ width, id }) {
+export function SelectCollege({ width, id, title }) {
   const [collegesRemote, setCollegesRemote] = useState([]);
   const [collegesLocal, setCollegesLocal] = useState([]);
 
@@ -30,14 +30,14 @@ export function SelectCollege({ width, id }) {
   }, []);
   return (
     <SelectArea width={width}>
-      <p>Instituição:</p>
+      <p>{title}</p>
       <select name="" id={id}>
         <option value="">Selecione</option>
         {collegesRemote ? (
           collegesRemote.map((college) => (
             <option
               key={`${college.name}-${college.city}-remote`}
-            >{`${college.name} | ${college.city}`}</option>
+            >{`${college.name} | ${college.city}-${college.uf}`}</option>
           ))
         ) : (
           <></>
@@ -46,7 +46,7 @@ export function SelectCollege({ width, id }) {
           collegesLocal.map((college) => (
             <option
               key={`${college.name}-${college.city}-local`}
-            >{`${college.name} | ${college.city}`}</option>
+            >{`${college.name} | ${college.city}-${college.uf}`}</option>
           ))
         ) : (
           <></>

@@ -3,11 +3,9 @@ import { MainHome } from "./HomeStyled";
 import Header from "../../components/Header/Header";
 import InputComponent from "../../components/Input/InputComponent";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
-import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 import { SelectParty } from "../../components/SelectParty/SelectParty";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 import { ToastContainer, toast } from "react-toastify";
-
 
 export default function Home() {
   const ToastNotice = (message, type) =>
@@ -27,7 +25,6 @@ export default function Home() {
     const student_phone = document.getElementById("phone").value;
     const student_responsible = document.getElementById("responsible").value;
     const student_born = document.getElementById("born_date").value;
-    const name_city_college = document.getElementById("college").value;
     const grade_time_party = document.getElementById("party").value;
 
     if (
@@ -35,19 +32,12 @@ export default function Home() {
       !student_phone ||
       !student_responsible ||
       !student_born ||
-      name_city_college === "Selecione" ||
       grade_time_party === "Selecione"
     ) {
       console.log("chegou aqui");
       ToastNotice("Por favor, preencha todos os campos obrigatórios.", "error");
       return;
     }
-
-    const college_parts = name_city_college
-      .split("|")
-      .map((part) => part.trim());
-    const college_name = college_parts[0];
-    const college_city = college_parts[1];
 
     const party_parts = grade_time_party.split("|").map((part) => part.trim());
     const party_grade = party_parts[0];
@@ -70,8 +60,6 @@ export default function Home() {
       responsible_name: student_responsible.toLowerCase(),
       born_date: student_born,
       registration: formatedDate,
-      name_college: college_name.toLowerCase(),
-      city_college: college_city.toLowerCase(),
       time_party: party_time.toLowerCase(),
       grade_party: party_grade.toLowerCase(),
       courses: student_courses,
@@ -88,7 +76,6 @@ export default function Home() {
     document.getElementById("phone").value = "";
     document.getElementById("responsible").value = "";
     document.getElementById("born_date").value = "";
-    document.getElementById("college").value = "Selecione";
     document.getElementById("party").value = "Selecione";
     for (let i = 0; i < courses.length; i++) {
       courses[i].checked = false;
@@ -130,11 +117,10 @@ export default function Home() {
               width="300px"
               id="born_date"
             />
-            <SelectCollege width="300px" id="college" />
           </div>
           <div id="formStudent2">
             <SelectParty width="300px" id="party" />
-            <CheckBoxCourses height="239px" width="300px" name="courses" />
+            <CheckBoxCourses height="151px" width="300px" name="courses" />
             <SubmitButton
               onClick={registerStudent}
               type="submit"

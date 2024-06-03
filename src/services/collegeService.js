@@ -17,3 +17,13 @@ export function registerColleges(data) {
 
   return response;
 }
+
+export function getCollege(data) {
+  const response = axios.post(`${baseURL}/college/find`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}

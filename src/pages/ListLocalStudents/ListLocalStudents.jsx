@@ -9,6 +9,8 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import Cookies from "js-cookie";
 import { postAllStudents } from "../../services/student";
 import { toast, ToastContainer } from "react-toastify";
+import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
+import { getCollege } from "../../services/collegeService";
 
 export default function ListLocalStudents() {
   const [infoLocalStudents, setInfoLocalStudents] = useState([]);
@@ -35,7 +37,7 @@ export default function ListLocalStudents() {
     localStorage.setItem("students", JSON.stringify(currentStudents));
 
     setInfoLocalStudents(currentStudents);
-    ToastNotice("Estudante deletado com sucesso", "info")
+    ToastNotice("Estudante deletado com sucesso", "info");
   }
 
   function calculateAge(birthDate) {
@@ -53,28 +55,47 @@ export default function ListLocalStudents() {
   }
 
   async function registerStudents() {
-    const currentStudents = localStorage.getItem("students")
-      ? JSON.parse(localStorage.getItem("students"))
-      : [];
+    // const currentStudents = localStorage.getItem("students")
+    //   ? JSON.parse(localStorage.getItem("students"))
+    //   : [];
 
-    if (currentStudents.length == 0) {
-      return ToastNotice("Não há alunos registrados.", "error");
-    } else if (!Cookies.get("token")) {
-      return ToastNotice(
-        "Faça login antes de enviar ao banco de dados",
-        "error"
-      );
+    // if (infoLocalStudents.length == 0) {
+    //   return ToastNotice("Não há alunos registrados.", "error");
+    // } else if (!Cookies.get("token")) {
+    //   return ToastNotice(
+    //     "Faça login antes de enviar ao banco de dados",
+    //     "error"
+    //   );
+    // }
+
+    const name_city_college = document.getElementById("college").value;
+    let id_college;
+
+    if (name_city_college) {
+      const [name_college, location] = name_city_college.split(" | ");
+      const [city_college, uf_college] = location.split("-");
+      const response = await getCollege({
+        name_college,
+        city_college,
+        uf_college,
+      });
+      id_college = response.data.college[0]._id;
+    } else {
+      return ToastNotice("Selecione um colégio", "error");
     }
 
-    const response = await postAllStudents(infoLocalStudents);
+    console.log(id_college);
 
-    if (response.status == 200) {
-      ToastNotice(response.data.message, "error");
-    } else if (response.status == 201) {
-      ToastNotice(response.data.message, "success");
-      setInfoLocalStudents([]);
-      localStorage.setItem("students", []);
-    }
+    // const response = await postAllStudents(infoLocalStudents);
+
+    // if (response.status == 200) {
+    //   ToastNotice(response.data.message, "error");
+    // } else if (response.status == 201) {
+    //   ToastNotice(response.data.message, "success");
+    //   setInfoLocalStudents([]);
+    //   localStorage.setItem("students", []);
+    // }
+    return;
   }
 
   useEffect(() => {
@@ -90,7 +111,10 @@ export default function ListLocalStudents() {
       <Header />
       <ListAreaLocalStudents>
         <div id="listArea">
-          <h2>Lista de Estudantes Local</h2>
+          <div id="header_list">
+            <h2>Lista de Estudantes Local</h2>
+            <SelectCollege id="college" width="250px" />
+          </div>
           <table>
             <thead>
               <tr>
