@@ -17,3 +17,13 @@ export function registerCourses(data) {
 
   return response;
 }
+
+export function getCourse(data) {
+  const response = axios.post(`${baseURL}/course/find`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}

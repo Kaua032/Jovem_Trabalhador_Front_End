@@ -11,6 +11,8 @@ import { postAllStudents } from "../../services/student";
 import { toast, ToastContainer } from "react-toastify";
 import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 import { getCollege } from "../../services/collegeService";
+import { getCourse } from "../../services/courseService";
+import { getParty } from "../../services/partyService";
 
 export default function ListLocalStudents() {
   const [infoLocalStudents, setInfoLocalStudents] = useState([]);
@@ -55,18 +57,18 @@ export default function ListLocalStudents() {
   }
 
   async function registerStudents() {
-    // const currentStudents = localStorage.getItem("students")
-    //   ? JSON.parse(localStorage.getItem("students"))
-    //   : [];
+    const currentStudents = localStorage.getItem("students")
+      ? JSON.parse(localStorage.getItem("students"))
+      : [];
 
-    // if (infoLocalStudents.length == 0) {
-    //   return ToastNotice("Não há alunos registrados.", "error");
-    // } else if (!Cookies.get("token")) {
-    //   return ToastNotice(
-    //     "Faça login antes de enviar ao banco de dados",
-    //     "error"
-    //   );
-    // }
+    if (currentStudents.length == 0) {
+      return ToastNotice("Não há alunos registrados.", "error");
+    } else if (!Cookies.get("token")) {
+      return ToastNotice(
+        "Faça login antes de enviar ao banco de dados",
+        "error"
+      );
+    }
 
     const name_city_college = document.getElementById("college").value;
     let id_college;
@@ -84,17 +86,48 @@ export default function ListLocalStudents() {
       return ToastNotice("Selecione um colégio", "error");
     }
 
-    console.log(id_college);
+    const studentPromises = infoLocalStudents.map(async (student) => {
+      const name_courses = student.courses;
+      let id_courses = [];
+      
+      for (let i = 0; i < name_courses.length; i++) {
+        const response = await getCourse({ name_course: name_courses[i] });
+        id_courses.push(response.data.course[0]._id);
+      }
+  
+      const response = await getParty({
+        grade_party: student.grade_party,
+        time_party: student.time_party,
+      });
+      const id_party = response.data.party[0]._id;
+  
+      let current_student = {
+        name: student.name,
+        phone: student.phone,
+        responsible_name: student.responsible_name,
+        born_date: student.born_date,
+        registration: student.registration,
+        id_college,
+        id_party,
+        id_courses,
+      };
+  
+      return current_student;
+    });
+  
+    const students = await Promise.all(studentPromises);
+  
+    console.log(students);
 
-    // const response = await postAllStudents(infoLocalStudents);
+    const response = await postAllStudents(students);
 
-    // if (response.status == 200) {
-    //   ToastNotice(response.data.message, "error");
-    // } else if (response.status == 201) {
-    //   ToastNotice(response.data.message, "success");
-    //   setInfoLocalStudents([]);
-    //   localStorage.setItem("students", []);
-    // }
+    if (response.status == 200) {
+      ToastNotice(response.data.message, "error");
+    } else if (response.status == 201) {
+      ToastNotice(response.data.message, "success");
+      setInfoLocalStudents([]);
+      localStorage.setItem("students", []);
+    }
     return;
   }
 

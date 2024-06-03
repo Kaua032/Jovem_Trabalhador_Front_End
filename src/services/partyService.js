@@ -17,3 +17,13 @@ export function registerPartys(data) {
 
   return response;
 }
+
+export function getParty(data) {
+  const response = axios.post(`${baseURL}/party/find`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}
