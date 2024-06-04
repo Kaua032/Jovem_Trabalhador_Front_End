@@ -28,6 +28,7 @@ export default function CollegeList() {
               <th>Nº</th>
               <th>Nome</th>
               <th>Cidade</th>
+              <th>UF</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +37,7 @@ export default function CollegeList() {
                 <td>{index + 1}º</td>
                 <td>{college.name}</td>
                 <td>{college.city}</td>
+                <td>{college.uf}</td>
               </tr>
             ))}
           </tbody>
