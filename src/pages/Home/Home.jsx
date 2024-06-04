@@ -32,7 +32,7 @@ export default function Home() {
       !student_phone ||
       !student_responsible ||
       !student_born ||
-      grade_time_party === "Selecione"
+      grade_time_party === ""
     ) {
       console.log("chegou aqui");
       ToastNotice("Por favor, preencha todos os campos obrigatórios.", "error");
