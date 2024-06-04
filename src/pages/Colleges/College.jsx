@@ -9,9 +9,11 @@ import { registerColleges } from "../../services/collegeService";
 import Cookies from "js-cookie";
 import SelectCity from "../../components/SelectCity/SelectCity";
 import { ToastContainer, toast } from "react-toastify";
+import SelectUF from "../../components/SelectUF/SelectUF";
 
 export default function College() {
   const [infoAllColleges, setInfoAllColleges] = useState([]);
+  const [uf, setUf] = useState("");
 
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
@@ -40,18 +42,24 @@ export default function College() {
   function registerCollege() {
     const nameCollege = document.getElementById("nameCollege").value;
     const nameCityCollege = document.getElementById("nameCityCollege").value;
+    const UF = document.getElementById("ufCityCollege").value;
 
-    if ((nameCollege !== "") & (nameCityCollege !== "")) {
+    if ((nameCollege !== "") & (nameCityCollege !== "") & (uf !== "")) {
       const currentColleges = localStorage.getItem("colleges")
         ? JSON.parse(localStorage.getItem("colleges"))
         : [];
 
-      currentColleges.push({ name: nameCollege, city: nameCityCollege });
+      currentColleges.push({
+        name: nameCollege,
+        city: nameCityCollege,
+        uf: UF,
+      });
 
       localStorage.setItem("colleges", JSON.stringify(currentColleges));
       setInfoAllColleges(currentColleges);
       document.getElementById("nameCollege").value = "";
       document.getElementById("nameCityCollege").value = "";
+      document.getElementById("ufCityCollege").value = "";
     }
   }
 
@@ -83,6 +91,11 @@ export default function College() {
     return;
   }
 
+  function selectUF() {
+    const selectedUF = document.getElementById("ufCityCollege").value;
+    setUf(selectedUF);
+  }
+
   useEffect(() => {
     setInfoAllColleges(
       localStorage.getItem("colleges")
@@ -105,7 +118,8 @@ export default function College() {
               width="300px"
               id="nameCollege"
             />
-            <SelectCity width="100%" id="nameCityCollege" />
+            <SelectUF onChange={selectUF} id="ufCityCollege" width="100%" />
+            <SelectCity uf={uf} width="100%" id="nameCityCollege" />
             <SubmitButton
               onClick={registerCollege}
               title="Adicionar"
@@ -120,6 +134,7 @@ export default function College() {
                   <th>Nº</th>
                   <th>Nome</th>
                   <th>Cidade</th>
+                  <th>UF</th>
                   <th></th>
                 </tr>
               </thead>
@@ -129,6 +144,7 @@ export default function College() {
                     <td>{index + 1}º</td>
                     <td>{college.name}</td>
                     <td>{college.city}</td>
+                    <td>{college.uf}</td>
                     <td>
                       <button
                         id={`delete-${index}`}
