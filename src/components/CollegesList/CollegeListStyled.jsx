@@ -36,7 +36,13 @@ export const ListArea = styled.div`
     text-align: center;
     padding: 10px 0px;
   }
-  table td input{
+  table td input {
+    width: 100%;
     border: none;
+    text-align: center;
+    color: #525668;
+  }
+  table td input:focus {
+    outline: none;
   }
 `;
