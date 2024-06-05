@@ -27,3 +27,13 @@ export function getParty(data) {
 
   return response;
 }
+
+export function updateParty(id, data) {
+  const response = axios.put(`${baseURL}/party/update/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}
