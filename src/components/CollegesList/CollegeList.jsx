@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ListArea } from "./CollegeListStyled";
 import { getAllColleges, updateCollege } from "../../services/collegeService";
 import { ToastContainer, toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 export default function CollegeList() {
   const [allColleges, setAllColleges] = useState([]);
@@ -29,6 +30,13 @@ export default function CollegeList() {
   }
 
   const handleInputChange = async (index, field, value) => {
+    if (!Cookies.get("token")) {
+      return ToastNotice(
+        "Você precisa estar logado para editar uma instituição",
+        "error"
+      );
+    }
+
     const students = JSON.parse(localStorage.getItem("students") || "[]");
     if (students.length > 0) {
       return ToastNotice(
@@ -36,6 +44,7 @@ export default function CollegeList() {
         "error"
       );
     }
+
     const updatedColleges = [...allColleges];
     updatedColleges[index][field] = value;
     setAllColleges(updatedColleges);
