@@ -27,3 +27,13 @@ export function getCourse(data) {
 
   return response;
 }
+
+export function updateCourse(id, data) {
+  const response = axios.put(`${baseURL}/course/update/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}
