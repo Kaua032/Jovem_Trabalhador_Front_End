@@ -69,7 +69,7 @@ export default function SelectCity({ width, id, uf }) {
         {cities.map((city) => (
           <option
             key={city.id}
-            value={`${city.nome}-${city.microrregiao.mesorregiao.UF.sigla}`}
+            value={`${city.nome}`}
           >
             {`${city.nome}-${city.microrregiao.mesorregiao.UF.sigla}`}
           </option>
