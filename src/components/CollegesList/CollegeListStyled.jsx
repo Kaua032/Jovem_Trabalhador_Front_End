@@ -36,4 +36,7 @@ export const ListArea = styled.div`
     text-align: center;
     padding: 10px 0px;
   }
+  table td input{
+    border: none;
+  }
 `;

@@ -34,7 +34,6 @@ export default function Home() {
       !student_born ||
       grade_time_party === ""
     ) {
-      console.log("chegou aqui");
       ToastNotice("Por favor, preencha todos os campos obrigatórios.", "error");
       return;
     }

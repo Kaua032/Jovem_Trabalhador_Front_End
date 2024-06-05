@@ -27,3 +27,13 @@ export function getCollege(data) {
 
   return response;
 }
+
+export function updateCollege(id, data) {
+  const response = axios.put(`${baseURL}/college/update/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return response;
+}

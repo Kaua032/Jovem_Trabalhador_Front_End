@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ListArea } from "./CollegeListStyled";
-import { getAllColleges } from "../../services/collegeService";
+import { getAllColleges, updateCollege } from "../../services/collegeService";
 
 export default function CollegeList() {
   const [allColleges, setAllColleges] = useState([]);
@@ -14,6 +14,17 @@ export default function CollegeList() {
       console.log(error);
     }
   }
+
+  const handleInputChange = async (index, field, value) => {
+    const updatedColleges = [...allColleges];
+    updatedColleges[index][field] = value;
+    setAllColleges(updatedColleges);
+    const response = await updateCollege(allColleges[index]._id, {
+      [field]: allColleges[index][field],
+    });
+
+    console.log(response)
+  };
 
   useEffect(() => {
     findAllColleges();
@@ -35,9 +46,33 @@ export default function CollegeList() {
             {allColleges.map((college, index) => (
               <tr key={index}>
                 <td>{index + 1}º</td>
-                <td>{college.name}</td>
-                <td>{college.city}</td>
-                <td>{college.uf}</td>
+                <td>
+                  <input
+                    type="text"
+                    value={college.name}
+                    onChange={(e) =>
+                      handleInputChange(index, "name", e.target.value)
+                    }
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={college.city}
+                    onChange={(e) =>
+                      handleInputChange(index, "city", e.target.value)
+                    }
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={college.uf}
+                    onChange={(e) =>
+                      handleInputChange(index, "uf", e.target.value)
+                    }
+                  />
+                </td>
               </tr>
             ))}
           </tbody>
