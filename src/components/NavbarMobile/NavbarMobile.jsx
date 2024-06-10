@@ -1,13 +1,27 @@
+import { useEffect } from "react";
 import NavbarComponent from "../NavbarComponent/NavbarComponent";
 import { BackgrounMobileNav, BackgroundNavMobile } from "./NavbarMobileStyled";
 
 export default function NavbarMobile({ display, setDisplay, ...props }) {
-
   function CloseModal() {
     setDisplay("none");
   }
+  function handleClickOutsideModal(e) {
+    const modal = document.getElementById("modal");
+    if (modal && !modal.contains(e.target)) {
+      setDisplay("none");
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideModal);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideModal);
+    };
+  }, []);
+
   return (
-    <BackgrounMobileNav display={display}>
+    <BackgrounMobileNav id="backgroundModal" display={display}>
       <BackgroundNavMobile id="modal">
         <div id="headerModal">
           <button onClick={CloseModal}></button>
