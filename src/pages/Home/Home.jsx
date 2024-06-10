@@ -6,8 +6,12 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { SelectParty } from "../../components/SelectParty/SelectParty";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 import { ToastContainer, toast } from "react-toastify";
+import NavbarMobile from "../../components/NavbarMobile/NavbarMobile";
+import { useState } from "react";
 
 export default function Home() {
+  const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
+
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
       position: "top-center",
@@ -83,7 +87,12 @@ export default function Home() {
   return (
     <MainHome>
       <Navbar p1={1} />
-      <Header />
+      <NavbarMobile
+        display={displayNavbarMobile}
+        setDisplay={setDisplayNavbarMobile}
+        p1={1}
+      />
+      <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <div id="formStudent">
         <h2>Adicionar Novo Estudante</h2>
         <div id="flex">

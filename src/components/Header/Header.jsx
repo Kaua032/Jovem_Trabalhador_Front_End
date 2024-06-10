@@ -11,7 +11,7 @@ import { signinSchema } from "../../schemas/signinSchema";
 import { signupSchema } from "../../schemas/signupSchema";
 import { useForm } from "react-hook-form";
 
-export default function Header() {
+export default function Header({ setDisplayNavbarMobile }) {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
   const [serverErrorSignin, setServerErrorSignin] = useState("");
@@ -94,6 +94,10 @@ export default function Header() {
     }
   }
 
+  function showModal() {
+    setDisplayNavbarMobile("flex")
+  }
+
   useEffect(() => {
     if (Cookies.get("token")) {
       getUser();
@@ -102,7 +106,7 @@ export default function Header() {
 
   return (
     <HeaderDiv>
-      <button id="hamburguer_navbar"></button>
+      <button onClick={showModal} id="hamburguer_navbar"></button>
       {user ? (
         <LogOut onClick={logOut}>
           <p>{user.name}</p>
