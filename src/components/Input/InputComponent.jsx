@@ -9,6 +9,7 @@ export default function InputComponent({
   plaHolder,
   id,
   value,
+  onChange,
 }) {
   return (
     <InputArea width={width}>
@@ -19,6 +20,7 @@ export default function InputComponent({
         type={type}
         placeholder={plaHolder}
         {...(register && register(name))}
+        onChange={onChange}
       />
     </InputArea>
   );

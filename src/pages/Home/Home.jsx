@@ -11,6 +11,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
+  const [phone, setPhone] = useState("");
 
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
@@ -23,6 +24,24 @@ export default function Home() {
       progress: undefined,
       theme: "colored",
     });
+
+  const handlePhoneChange = (e) => {
+    const inputValue = e.target.value.replace(/\D/g, "");
+    let formattedValue = "";
+
+    if (inputValue.length <= 2) {
+      formattedValue = `(${inputValue}`;
+    } else if (inputValue.length <= 6) {
+      formattedValue = `(${inputValue.slice(0, 2)}) ${inputValue.slice(2)}`;
+    } else if (inputValue.length <= 11) {
+      formattedValue = `(${inputValue.slice(0, 2)}) ${inputValue.slice(
+        2,
+        3
+      )}-${inputValue.slice(3, 7)}-${inputValue.slice(7)}`;
+    }
+
+    setPhone(formattedValue);
+  };
 
   function registerStudent() {
     const student_name = document.getElementById("name").value;
@@ -110,6 +129,8 @@ export default function Home() {
               title="Telefone:"
               width="300px"
               id="phone"
+              value={phone}
+              onChange={handlePhoneChange}
             />
             <InputComponent
               name="responsible_name"
