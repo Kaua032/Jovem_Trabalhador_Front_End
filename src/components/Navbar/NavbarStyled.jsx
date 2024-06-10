@@ -4,6 +4,7 @@ export const BackgroundNav = styled.section`
   width: 285px;
   height: 100%;
   background-color: white;
+  padding-top: 50px;
 
   display: flex;
   flex-direction: column;
@@ -18,11 +19,12 @@ export const BackgroundNav = styled.section`
     font-size: 24px;
     text-decoration: none;
   }
-  div{
+  div {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
-
-  padding-top: 50px;
+  @media (max-width: 1050px) {
+    display: none;
+  }
 `;

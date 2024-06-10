@@ -2,18 +2,27 @@ import styled from "styled-components";
 
 export const HeaderDiv = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: end;
   width: 100%;
-  padding: 30px 20px 40px 0px;
+  padding: 30px 20px 40px 20px;
 
   #loginButton {
     font-size: 20px;
     font-weight: 600;
     width: 130px;
     align-self: flex-end;
-    margin-right: 30px;
     border-radius: 10px;
+  }
+  #hamburguer_navbar {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    background-image: url("./hamburguer_navbar.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #f6f7f9;
   }
 `;
 export const LogOut = styled.div`

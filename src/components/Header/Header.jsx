@@ -102,6 +102,7 @@ export default function Header() {
 
   return (
     <HeaderDiv>
+      <button id="hamburguer_navbar"></button>
       {user ? (
         <LogOut onClick={logOut}>
           <p>{user.name}</p>
