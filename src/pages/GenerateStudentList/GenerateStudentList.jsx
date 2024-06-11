@@ -94,7 +94,7 @@ export default function GenerateStudentList() {
       <NavbarMobile
         display={displayNavbarMobile}
         setDisplay={setDisplayNavbarMobile}
-        p1={1}
+        p7={1}
       />
       <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <SectionGenerateStudent>

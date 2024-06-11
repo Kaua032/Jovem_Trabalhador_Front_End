@@ -4,7 +4,10 @@ export const MainGenerateStudent = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 20px 50px 20px;
+  padding-bottom: 50px;
+  @media (max-width: 1050px) {
+    padding: 0px 20px 50px 20px;
+  }
 `;
 
 export const SectionGenerateStudent = styled.section`

@@ -101,7 +101,7 @@ export default function Party() {
       <NavbarMobile
         display={displayNavbarMobile}
         setDisplay={setDisplayNavbarMobile}
-        p4={1}
+        p6={1}
       />
       <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <SectionParty>
