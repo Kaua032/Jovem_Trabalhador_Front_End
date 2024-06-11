@@ -14,9 +14,11 @@ import SelectJustParty from "../../components/SelectJustParty/SelectJustParty";
 import { generateStudents } from "../../services/student";
 import SelectJustCollege from "../../components/SelectJustCollege/SelectJustCollege";
 import { ToastContainer, toast } from "react-toastify";
+import NavbarMobile from "../../components/NavbarMobile/NavbarMobile";
 
 export default function GenerateStudentList() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
+  const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
 
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
@@ -89,7 +91,12 @@ export default function GenerateStudentList() {
   return (
     <MainGenerateStudent>
       <Navbar p7={1} />
-      <Header />
+      <NavbarMobile
+        display={displayNavbarMobile}
+        setDisplay={setDisplayNavbarMobile}
+        p1={1}
+      />
+      <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <SectionGenerateStudent>
         <div id="formGenerateList">
           <h2>Gerar Lista de Alunos</h2>
@@ -111,39 +118,41 @@ export default function GenerateStudentList() {
             title="Gerar Lista"
           />
         </div>
-        <div id="listArea">
-          <h2>Lista de Estudantes</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Nº</th>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Responsável</th>
-                <th>Idade</th>
-              </tr>
-            </thead>
-            <tbody>
-              {infoAllStudents.length > 0 ? (
-                infoAllStudents.map((student, index) => (
-                  <tr key={student._id}>
-                    <td>{index + 1}º</td>
-                    <td>{student.name}</td>
-                    <td>{student.phone}</td>
-                    <td>{student.responsible_name}</td>
-                    <td>{calculateAge(student.born_date)} anos</td>
-                  </tr>
-                ))
-              ) : (
-                <tr id="noStudents">
-                  <td colSpan="5">
-                    <img src="./alerta.png" alt="" />
-                    <p>Nenhum aluno encontrado.</p>
-                  </td>
+        <div id="background_listArea">
+          <div id="listArea">
+            <h2>Lista de Estudantes</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nº</th>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                  <th>Responsável</th>
+                  <th>Idade</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {infoAllStudents.length > 0 ? (
+                  infoAllStudents.map((student, index) => (
+                    <tr key={student._id}>
+                      <td>{index + 1}º</td>
+                      <td>{student.name}</td>
+                      <td>{student.phone}</td>
+                      <td>{student.responsible_name}</td>
+                      <td>{calculateAge(student.born_date)} anos</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr id="noStudents">
+                    <td colSpan="5">
+                      <img src="./alerta.png" alt="" />
+                      <p>Nenhum aluno encontrado.</p>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </SectionGenerateStudent>
       <ToastContainer />

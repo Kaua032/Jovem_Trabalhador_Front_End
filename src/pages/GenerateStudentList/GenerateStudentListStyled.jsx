@@ -4,13 +4,14 @@ export const MainGenerateStudent = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 50px;
+  padding: 20px 20px 50px 20px;
 `;
 
 export const SectionGenerateStudent = styled.section`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-left: 285px;
 
   #formGenerateList {
     display: flex;
@@ -30,6 +31,7 @@ export const SectionGenerateStudent = styled.section`
   #areaInputs {
     display: flex;
     gap: 80px;
+    flex-wrap: wrap;
   }
   #areaInputs .inputs {
     display: flex;
@@ -79,5 +81,30 @@ export const SectionGenerateStudent = styled.section`
     font-size: 18px;
     font-weight: bold;
     color: red;
+  }
+  @media (max-width: 1050px) {
+    margin: 0;
+  }
+  @media (max-width: 800px) {
+    #listArea {
+      width: 100%;
+    }
+  }
+  @media (max-width: 761px) {
+    flex-direction: column;
+    align-items: center;
+    #formGenerateList {
+      width: 340px;
+    }
+  }
+  @media (max-width: 650px) {
+    width: 100%;
+    #background_listArea {
+      width: 100%;
+      overflow-x: auto;
+    }
+    #listArea {
+      width: 540px;
+    }
   }
 `;
