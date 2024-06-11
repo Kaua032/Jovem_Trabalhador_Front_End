@@ -9,9 +9,11 @@ import { registerPartys } from "../../services/partyService";
 import PartyList from "../../components/PartysList/PartyList";
 import SelectTime from "../../components/SelectTime/SelectTime";
 import { ToastContainer, toast } from "react-toastify";
+import NavbarMobile from "../../components/NavbarMobile/NavbarMobile";
 
 export default function Party() {
   const [infoAllPartys, setInfoAllPartys] = useState([]);
+  const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
 
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
@@ -96,7 +98,12 @@ export default function Party() {
   return (
     <MainParty>
       <Navbar p6={1} />
-      <Header />
+      <NavbarMobile
+        display={displayNavbarMobile}
+        setDisplay={setDisplayNavbarMobile}
+        p4={1}
+      />
+      <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <SectionParty>
         <div id="addPartyArea">
           <div id="form-party">

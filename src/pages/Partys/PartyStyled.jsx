@@ -8,7 +8,11 @@ export const MainParty = styled.main`
 
 export const SectionParty = styled.section`
   display: flex;
+  justify-content: center;
   gap: 100px;
+  padding: 20px;
+  flex-wrap: wrap;
+  margin-left: 285px;
 
   #addPartyArea {
     display: flex;
@@ -72,5 +76,12 @@ export const SectionParty = styled.section`
     background-color: white;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+  @media (max-width: 1126px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media (max-width: 1050px) {
+    margin: 0;
   }
 `;
