@@ -8,9 +8,11 @@ import Cookies from "js-cookie";
 import { registerCourses } from "../../services/courseService";
 import CourseList from "../../components/CoursesList/CoursesList";
 import { ToastContainer, toast } from "react-toastify";
+import NavbarMobile from "../../components/NavbarMobile/NavbarMobile";
 
 export default function Courses() {
   const [infoAllCourses, setInfoAllCourses] = useState([]);
+  const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
 
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
@@ -89,7 +91,12 @@ export default function Courses() {
   return (
     <MainCourse>
       <Navbar p5={1} />
-      <Header />
+      <NavbarMobile
+        display={displayNavbarMobile}
+        setDisplay={setDisplayNavbarMobile}
+        p5={1}
+      />
+      <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <SectionCourse>
         <div id="addCourseArea">
           <div id="form-course">

@@ -8,7 +8,11 @@ export const MainCourse = styled.main`
 
 export const SectionCourse = styled.section`
   display: flex;
+  justify-content: center;
   gap: 100px;
+  padding: 20px;
+  flex-wrap: wrap;
+  margin-left: 285px;
 
   #addCourseArea {
     display: flex;
@@ -72,5 +76,12 @@ export const SectionCourse = styled.section`
     background-color: white;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+  @media (max-width: 1126px){
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media (max-width: 1050px){
+    margin: 0;
   }
 `;
