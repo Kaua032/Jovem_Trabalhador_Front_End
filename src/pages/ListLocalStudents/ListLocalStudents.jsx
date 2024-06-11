@@ -13,9 +13,11 @@ import { SelectCollege } from "../../components/SelectCollege/SelectCollege";
 import { getCollege } from "../../services/collegeService";
 import { getCourse } from "../../services/courseService";
 import { getParty } from "../../services/partyService";
+import NavbarMobile from "../../components/NavbarMobile/NavbarMobile";
 
 export default function ListLocalStudents() {
   const [infoLocalStudents, setInfoLocalStudents] = useState([]);
+  const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
 
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
@@ -89,18 +91,18 @@ export default function ListLocalStudents() {
     const studentPromises = infoLocalStudents.map(async (student) => {
       const name_courses = student.courses;
       let id_courses = [];
-      
+
       for (let i = 0; i < name_courses.length; i++) {
         const response = await getCourse({ name_course: name_courses[i] });
         id_courses.push(response.data.course[0]._id);
       }
-  
+
       const response = await getParty({
         grade_party: student.grade_party,
         time_party: student.time_party,
       });
       const id_party = response.data.party[0]._id;
-  
+
       let current_student = {
         name: student.name,
         phone: student.phone,
@@ -111,12 +113,12 @@ export default function ListLocalStudents() {
         id_party,
         id_courses,
       };
-  
+
       return current_student;
     });
-  
+
     const students = await Promise.all(studentPromises);
-  
+
     console.log(students);
 
     const response = await postAllStudents(students);
@@ -141,42 +143,49 @@ export default function ListLocalStudents() {
   return (
     <MainLocalStudents>
       <Navbar p2={1} />
-      <Header />
+      <NavbarMobile
+        display={displayNavbarMobile}
+        setDisplay={setDisplayNavbarMobile}
+        p2={1}
+      />
+      <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <ListAreaLocalStudents>
-        <div id="listArea">
-          <div id="header_list">
-            <h2>Lista de Estudantes Local</h2>
-            <SelectCollege id="college" width="250px" />
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Nº</th>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Responsável</th>
-                <th>Idade</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {infoLocalStudents.map((student, index) => (
-                <tr key={index}>
-                  <td>{index + 1}º</td>
-                  <td>{student.name}</td>
-                  <td>{student.phone}</td>
-                  <td>{student.responsible_name}</td>
-                  <td>{calculateAge(student.born_date)}</td>
-                  <td>
-                    <button
-                      className="deleteButton"
-                      onClick={() => handleDeleteStudent(index)}
-                    ></button>
-                  </td>
+        <div id="background_listArea">
+          <div id="listArea">
+            <div id="header_list">
+              <h2>Lista de Estudantes Local</h2>
+              <SelectCollege id="college" width="250px" />
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nº</th>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                  <th>Responsável</th>
+                  <th>Idade</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {infoLocalStudents.map((student, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}º</td>
+                    <td>{student.name}</td>
+                    <td>{student.phone}</td>
+                    <td>{student.responsible_name}</td>
+                    <td>{calculateAge(student.born_date)}</td>
+                    <td>
+                      <button
+                        className="deleteButton"
+                        onClick={() => handleDeleteStudent(index)}
+                      ></button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
         <SubmitButton
           onClick={registerStudents}

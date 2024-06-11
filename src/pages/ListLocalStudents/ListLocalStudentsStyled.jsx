@@ -11,6 +11,7 @@ export const ListAreaLocalStudents = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  margin-left: 285px;
 
   #listArea {
     width: 720px;
@@ -28,6 +29,7 @@ export const ListAreaLocalStudents = styled.div`
     width: 100%;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
   }
   #listArea #header_list #space {
     width: 170px;
@@ -65,5 +67,29 @@ export const ListAreaLocalStudents = styled.div`
     background-color: white;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+  @media (max-width: 1050px) {
+    margin: 0;
+    padding: 10px;
+  }
+
+  @media (max-width: 800px) {
+    #listArea {
+      width: 100%;
+    }
+    #listArea #header_list {
+      gap: 10px;
+      padding: 10px;
+    }
+  }
+  @media (max-width: 650px) {
+    width: 100%;
+    #background_listArea {
+      width: 100%;
+      overflow-x: auto;
+    }
+    #listArea {
+      width: 530px;
+    }
   }
 `;
