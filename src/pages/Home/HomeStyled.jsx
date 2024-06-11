@@ -44,4 +44,9 @@ export const MainHome = styled.main`
       gap: 20px;
     }
   }
+  @media (max-width: 360px){
+    #formStudent {
+      width: 100%;
+    }
+  }
 `;
