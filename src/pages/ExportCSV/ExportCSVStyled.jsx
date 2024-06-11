@@ -10,6 +10,7 @@ export const SectionExportCSV = styled.section`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-left: 285px;
 
   #formExportCSV {
     display: flex;
@@ -29,10 +30,21 @@ export const SectionExportCSV = styled.section`
   #areaInputs {
     display: flex;
     gap: 80px;
+    flex-wrap: wrap;
   }
   #areaInputs .inputs {
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+  @media (max-width: 1050px) {
+    margin: 0;
+  }
+  @media (max-width: 750px) {
+    flex-direction: column;
+    align-items: center;
+    #formExportCSV {
+      width: 340px;
+    }
   }
 `;

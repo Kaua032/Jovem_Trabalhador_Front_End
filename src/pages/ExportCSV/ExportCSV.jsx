@@ -10,8 +10,12 @@ import SelectRegistration from "../../components/SelectRegistration/SelectRegist
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { exportStudentCSV } from "../../services/student";
 import { ToastContainer, toast } from "react-toastify";
+import { useState } from "react";
+import NavbarMobile from "../../components/NavbarMobile/NavbarMobile";
 
 export default function ExportCSV() {
+  const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
+
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
       position: "top-center",
@@ -91,7 +95,12 @@ export default function ExportCSV() {
   return (
     <MainExportCSV>
       <Navbar p8={1} />
-      <Header />
+      <NavbarMobile
+        display={displayNavbarMobile}
+        setDisplay={setDisplayNavbarMobile}
+        p8={1}
+      />
+      <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <SectionExportCSV>
         <div id="formExportCSV">
           <h2>Exportar CSV</h2>
