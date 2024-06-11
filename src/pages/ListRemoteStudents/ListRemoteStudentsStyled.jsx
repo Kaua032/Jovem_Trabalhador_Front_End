@@ -15,6 +15,7 @@ export const ListAreaRemoteStudents = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  margin-left: 285px;
 
   input {
     width: 360px;
@@ -107,5 +108,35 @@ export const ListAreaRemoteStudents = styled.div`
     font-size: 18px;
     font-weight: bold;
     color: red;
+  }
+  @media (max-width: 1050px){
+    margin: 0;
+    padding: 10px;
+  }
+  @media (max-width: 800px) {
+    #background_listArea {
+      width: 100%;
+    }
+    #listArea {
+      width: 100%;
+    }
+  }
+  @media (max-width: 650px){
+    width: 100%;
+    #background_listArea {
+      width: 100%;
+      overflow-x: auto;
+    }
+    #listArea {
+      width: 630px;
+    }
+  }
+  @media (max-width: 400px){
+    #div_search{
+      width: 100%;
+    }
+    #div_search input{
+      width: 100%;
+    }
   }
 `;

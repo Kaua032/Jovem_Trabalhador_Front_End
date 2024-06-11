@@ -19,12 +19,14 @@ import { SelectParty } from "../../components/SelectParty/SelectParty";
 import CheckBoxCourses from "../../components/CheckBoxCourses/CheckBoxCourses";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import { ToastContainer, toast } from "react-toastify";
+import NavbarMobile from "../../components/NavbarMobile/NavbarMobile";
 
 export default function ListRemoteStudent() {
   const [infoAllStudents, setInfoAllStudents] = useState([]);
   const [page, setPage] = useState(1);
   const [show, setShow] = useState(false);
   const [currentStudentId, setCurrentStudentId] = useState("");
+  const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -195,9 +197,14 @@ export default function ListRemoteStudent() {
   return (
     <MainRemoteStudents>
       <Navbar p3={1} />
-      <Header />
+      <NavbarMobile
+        display={displayNavbarMobile}
+        setDisplay={setDisplayNavbarMobile}
+        p3={1}
+      />
+      <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <ListAreaRemoteStudents>
-        <div>
+        <div id="div_search">
           <input
             onChange={SearchStudent}
             id="searchStudent"
@@ -205,56 +212,58 @@ export default function ListRemoteStudent() {
             placeholder="Pesquisar..."
           />
         </div>
-        <div id="listArea">
-          <h2>Lista de Estudantes Remota</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Nº</th>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Responsável</th>
-                <th>Idade</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {Cookies.get("token") ? (
-                infoAllStudents.map((student, index) => (
-                  <tr key={student._id}>
-                    <td>{index + 1}º</td>
-                    <td>{student.name}</td>
-                    <td>{student.phone}</td>
-                    <td>{student.responsible_name}</td>
-                    <td>{calculateAge(student.born_date)} anos</td>
-                    <td>
-                      <button
-                        onClick={() => ShowStudent(index)}
-                        className="editButton"
-                      ></button>
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => deleteStudent(index)}
-                        className="deleteButton"
-                      ></button>
+        <div id="background_listArea">
+          <div id="listArea">
+            <h2>Lista de Estudantes Remota</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nº</th>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                  <th>Responsável</th>
+                  <th>Idade</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {Cookies.get("token") ? (
+                  infoAllStudents.map((student, index) => (
+                    <tr key={student._id}>
+                      <td>{index + 1}º</td>
+                      <td>{student.name}</td>
+                      <td>{student.phone}</td>
+                      <td>{student.responsible_name}</td>
+                      <td>{calculateAge(student.born_date)} anos</td>
+                      <td>
+                        <button
+                          onClick={() => ShowStudent(index)}
+                          className="editButton"
+                        ></button>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => deleteStudent(index)}
+                          className="deleteButton"
+                        ></button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr id="noLogin">
+                    <td colSpan="7">
+                      <img src="./alerta.png" alt="" />
+                      <p>
+                        Você precisa está logado para ver os alunos da Rede
+                        remota.
+                      </p>
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr id="noLogin">
-                  <td colSpan="7">
-                    <img src="./alerta.png" alt="" />
-                    <p>
-                      Você precisa está logado para ver os alunos da Rede
-                      remota.
-                    </p>
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
         <div id="buttons">
           <button id="left" onClick={handlePreviousPage}>

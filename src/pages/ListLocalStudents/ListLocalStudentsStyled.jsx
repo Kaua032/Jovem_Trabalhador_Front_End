@@ -89,7 +89,7 @@ export const ListAreaLocalStudents = styled.div`
       overflow-x: auto;
     }
     #listArea {
-      width: 530px;
+      width: 630px;
     }
   }
 `;
