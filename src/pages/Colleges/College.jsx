@@ -10,10 +10,12 @@ import Cookies from "js-cookie";
 import SelectCity from "../../components/SelectCity/SelectCity";
 import { ToastContainer, toast } from "react-toastify";
 import SelectUF from "../../components/SelectUF/SelectUF";
+import NavbarMobile from "../../components/NavbarMobile/NavbarMobile";
 
 export default function College() {
   const [infoAllColleges, setInfoAllColleges] = useState([]);
   const [uf, setUf] = useState("");
+  const [displayNavbarMobile, setDisplayNavbarMobile] = useState("none");
 
   const ToastNotice = (message, type) =>
     toast[type](`${message}`, {
@@ -106,7 +108,12 @@ export default function College() {
   return (
     <MainCollege>
       <Navbar p4={1} />
-      <Header />
+      <NavbarMobile
+        display={displayNavbarMobile}
+        setDisplay={setDisplayNavbarMobile}
+        p4={1}
+      />
+      <Header setDisplayNavbarMobile={setDisplayNavbarMobile} />
       <SectionCollege>
         <div id="addCollegeArea">
           <div id="form-college">

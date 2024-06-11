@@ -8,7 +8,11 @@ export const MainCollege = styled.main`
 
 export const SectionCollege = styled.section`
   display: flex;
+  justify-content: center;
   gap: 100px;
+  padding: 20px;
+  flex-wrap: wrap;
+  margin-left: 285px;
 
   #addCollegeArea {
     display: flex;
@@ -54,13 +58,15 @@ export const SectionCollege = styled.section`
     font-weight: 500;
     color: #525668;
   }
-  #local tr td, #local tr th {
+  #local tr td,
+  #local tr th {
     padding: 10px 0px;
   }
   table tbody tr {
     border-top: 1px solid #bababa;
   }
-  #addCollegeArea table th, #addCollegeArea table td {
+  #addCollegeArea table th,
+  #addCollegeArea table td {
     text-align: center;
   }
   #addCollegeArea table td button {
@@ -71,5 +77,12 @@ export const SectionCollege = styled.section`
     background-color: white;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+  @media (max-width: 1126px){
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media (max-width: 1050px){
+    margin: 0;
   }
 `;
