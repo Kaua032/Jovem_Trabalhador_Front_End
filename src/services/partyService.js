@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const baseURL = "http://localhost:2000";
+const baseURL = "https://api-jovemtrabalhador.onrender.com";
 
 export function getAllPartys() {
   const response = axios.get(`${baseURL}/party/all`);

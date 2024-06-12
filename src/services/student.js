@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const baseURL = "http://localhost:2000";
+const baseURL = "https://api-jovemtrabalhador.onrender.com";
 
 export function getAllStudentsByPage(data) {
   const response = axios.post(`${baseURL}/student/all`, data);
