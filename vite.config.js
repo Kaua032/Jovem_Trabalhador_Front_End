@@ -35,6 +35,36 @@ const manifestForPlugin = {
     start_url: "/",
     orientation: "portrait",
   },
+  workbox: {
+    globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/your-cdn-url\.com\//,
+        handler: "CacheFirst",
+        options: {
+          cacheName: "cdn-cache",
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 30 dias
+          },
+        },
+      },
+      {
+        urlPattern: ({ request }) =>
+          request.destination === "document" ||
+          request.destination === "script" ||
+          request.destination === "style",
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "static-resources",
+          expiration: {
+            maxEntries: 50,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 30 dias
+          },
+        },
+      },
+    ],
+  },
 };
 
 // https://vitejs.dev/config/
