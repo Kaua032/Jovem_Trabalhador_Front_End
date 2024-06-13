@@ -35,9 +35,10 @@ export default function Header({ setDisplayNavbarMobile }) {
   async function inHandleSubmit(data) {
     try {
       const response = await signin(data);
+      console.log(response)
       Cookies.set("token", response.data.token, { expires: 1 });
       handleClose();
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       setServerErrorSignin(error.response.data.message);
       console.log(error);
