@@ -5,7 +5,7 @@ export default function Navbar({ ...props }) {
   return (
     <BackgroundNav>
       <a id="title" href="/">
-        Jovem Trabalhador
+        <img src="./logo.png" alt="" />
       </a>
       <div>
         <NavbarComponent href="/" type={props.p1} name="Adicionar Aluno" />

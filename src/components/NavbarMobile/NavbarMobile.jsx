@@ -26,7 +26,7 @@ export default function NavbarMobile({ display, setDisplay, ...props }) {
         <div id="headerModal">
           <button onClick={CloseModal}></button>
           <a id="title" href="/">
-            Jovem Trabalhador
+            <img src="./logo.png" alt="" />
           </a>
         </div>
         <div>

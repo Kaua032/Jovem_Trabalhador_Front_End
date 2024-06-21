@@ -59,4 +59,7 @@ export const BackgroundNavMobile = styled.section`
     background-color: white;
     border: none;
   }
+  a img{
+    width: 200px;
+  }
 `;

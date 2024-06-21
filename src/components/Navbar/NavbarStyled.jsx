@@ -24,6 +24,9 @@ export const BackgroundNav = styled.section`
     flex-direction: column;
     width: 100%;
   }
+  a img{
+    width: 200px;
+  }
   @media (max-width: 1050px) {
     display: none;
   }
