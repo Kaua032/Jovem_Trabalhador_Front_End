@@ -34,12 +34,12 @@ export default function NavbarMobile({ display, setDisplay, ...props }) {
           <NavbarComponent
             href="/localStudents"
             type={props.p2}
-            name="Alunos Local"
+            name="Adicionar Alunos Banco"
           />
           <NavbarComponent
             href="/remoteStudents"
             type={props.p3}
-            name="Alunos Remota"
+            name="Alunos Salvos no Banco"
           />
           <NavbarComponent
             href="/college"
