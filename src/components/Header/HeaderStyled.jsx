@@ -13,6 +13,8 @@ export const HeaderDiv = styled.div`
     width: 130px;
     align-self: flex-end;
     border-radius: 10px;
+    background-color: #F58634;
+    border: none;
   }
   #hamburguer_navbar {
     width: 40px;
@@ -55,7 +57,7 @@ export const LogOut = styled.div`
       background-image: url("./logoutHover.svg");
     }
     p {
-      color: #0a7de8;
+      color: #F58634;
     }
   }
 `;
