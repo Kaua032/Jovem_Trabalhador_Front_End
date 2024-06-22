@@ -1,5 +1,5 @@
 # Jovem Trabalhador Front End
-
+<img src="./public/logo.png" />
 ## Índice
 
 - [Pré-requisitos](#pré-requisitos)
