@@ -7,7 +7,7 @@
 - [Instalar Dependências](#instalar-dependências)
 - [Rodar o Projeto](#rodar-o-projeto)
 - [Instalação do PWA](#instalação-do-pwa)
-  - [Para iOS (Safari)](#para-ios-safari)
+  - [Para IOS (Safari)](#para-ios-safari)
   - [Para Android (Chrome)](#para-android-chrome)
 - [Contribuições](#contribuições)
 - [Licença](#licença)
@@ -26,3 +26,23 @@ Para clonar o repositório, execute o seguinte comando no terminal:
 ```bash
 git clone https://github.com/Kaua032/Jovem_Trabalhador_Front_End.git
 cd Jovem_Trabalhador_Front_End
+
+```
+## Instalar Dependências
+
+```terminal
+npm install
+```
+## Rodar o Projeto
+
+```terminal
+npm run dev
+```
+## Rodar o Projeto
+
+```terminal
+npm run dev
+```
+## Instalação do PWA
+
+### Para IOS (Safari)
