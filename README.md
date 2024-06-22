@@ -38,6 +38,9 @@ npm run dev
 ```
 ## Instalação do PWA
 
+### Link do Web Site
+https://jovem-trabalhador-front-end.vercel.app/
+
 ### Para IOS (Safari)
 1. Abra o site no navegador Safari
 2. Toque no ícone de compartilhamento na parte inferior da tela (caixa com seta para cima)
