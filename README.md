@@ -9,8 +9,6 @@
 - [Instalação do PWA](#instalação-do-pwa)
   - [Para IOS (Safari)](#para-ios-safari)
   - [Para Android (Chrome)](#para-android-chrome)
-- [Contribuições](#contribuições)
-- [Licença](#licença)
 
 ## Pré-requisitos
 
@@ -38,11 +36,14 @@ npm install
 ```terminal
 npm run dev
 ```
-## Rodar o Projeto
-
-```terminal
-npm run dev
-```
 ## Instalação do PWA
 
 ### Para IOS (Safari)
+1. Abra o site no navegador Safari
+2. Toque no ícone de compartilhamento na parte inferior da tela (caixa com seta para cima)
+3. No menu de compartilhamento, toque em "Adicionar à Tela de Início" ou similar
+4. Siga as instruções na tela para concluir a instalação
+### Para Android (Chrome)
+1. Abra o site no navegador Chrome
+2. No menu do navegador, clique em "Adicionar à Tela Inicial" ou similar
+3. Siga as instruções na tela para concluir a instalação
