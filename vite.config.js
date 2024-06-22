@@ -28,7 +28,7 @@ const manifestForPlugin = {
         purpose: "apple touch icon",
       },
     ],
-    theme_color: "#0A7DE8",
+    theme_color: "#F58634",
     background_color: "#ffffff",
     display: "fullscreen",
     scope: "/",
