@@ -24,5 +24,5 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 Para clonar o repositório, execute o seguinte comando no terminal:
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-projeto.git
-cd nome-do-projeto
+git clone https://github.com/Kaua032/Jovem_Trabalhador_Front_End.git
+cd Jovem_Trabalhador_Front_End
